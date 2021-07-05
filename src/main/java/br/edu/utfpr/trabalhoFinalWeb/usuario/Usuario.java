@@ -21,5 +21,8 @@ public class Usuario {
     private Long idUsuario;
 
     @Column(name = "NOME")
-    private String nomeUsuario;
+    private String nome;
+
+    @Column(name = "email")
+    private String email;
 }
