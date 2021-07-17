@@ -1,15 +1,11 @@
 package br.edu.utfpr.trabalhoFinalWeb.model;
 
 import br.edu.utfpr.trabalhoFinalWeb.enumeration.CategoriaItemEnum;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
 
 @Entity
 @Table(name = "ITEM")
@@ -17,7 +13,8 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Item {// ver se precisa implementar serializable
+@EqualsAndHashCode(of = "idItem")
+public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,10 +1,7 @@
 package br.edu.utfpr.trabalhoFinalWeb.model;
 
 import br.edu.utfpr.trabalhoFinalWeb.enumeration.TipoPagamento;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -15,6 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@EqualsAndHashCode(of = "idPedido")
 public class Pedido {
 
     @Id
