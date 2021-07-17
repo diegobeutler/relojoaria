@@ -1,7 +1,5 @@
-package br.edu.utfpr.trabalhoFinalWeb.pedidoItem;
+package br.edu.utfpr.trabalhoFinalWeb.model;
 
-import br.edu.utfpr.trabalhoFinalWeb.item.Item;
-import br.edu.utfpr.trabalhoFinalWeb.pedido.Pedido;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,7 +1,6 @@
-package br.edu.utfpr.trabalhoFinalWeb.pedido;
+package br.edu.utfpr.trabalhoFinalWeb.model;
 
-import br.edu.utfpr.trabalhoFinalWeb.pedido.enumeration.TipoPagamento;
-import br.edu.utfpr.trabalhoFinalWeb.usuario.Usuario;
+import br.edu.utfpr.trabalhoFinalWeb.enumeration.TipoPagamento;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

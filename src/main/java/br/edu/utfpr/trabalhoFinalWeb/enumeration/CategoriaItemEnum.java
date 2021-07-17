@@ -1,7 +1,7 @@
-package br.edu.utfpr.trabalhoFinalWeb.item.enumeration;
+package br.edu.utfpr.trabalhoFinalWeb.enumeration;
 
 public enum CategoriaItemEnum {
-    RELOGIOS("RELOGIOS"),
+    RELOGIOS("Relógios"),
     ANEIS("Anéis");
 
     private String label;

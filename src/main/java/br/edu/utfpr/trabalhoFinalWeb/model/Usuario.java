@@ -1,4 +1,4 @@
-package br.edu.utfpr.trabalhoFinalWeb.usuario;
+package br.edu.utfpr.trabalhoFinalWeb.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,4 +25,7 @@ public class Usuario {
 
     @Column(name = "email")
     private String email;
+
+    @Column(name = "senha")
+    private String senha;
 }
