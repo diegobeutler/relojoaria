@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<!--<head>-->
+<!--    <link th:href="@{/css/navbar.css}" rel="stylesheet"/>-->
+<!--</head>-->
+<!--<header>-->
+<!--    <link th:href="@{/css/navbar.css}" rel="stylesheet"/>-->
+<!--</header>-->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top" th:fragment="navbar">
+        <button class="navbar-toggler z-index" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav mr-auto mt-2 align-items-center">
+                <li class="content-logo"><a class="nav-link mt-1" th:href="@{/index.html}">
+                    <img th:src="@{/images/logo.png}" class="logo" class="d-inline-block img-thumbnail" alt="Logo"/>Relojoaria
+                    Hora Certa</a></li>
+                <li><a class="nav-link text-light ml-2  pr-lg-0 p-xl-2" th:href="@{/login}">Login</a></li>
+                <li><a class="nav-link  text-light  pr-lg-0 p-xl-2" th:href="@{/cadastro}">Cadastrar-se</a></li>
+                <li><a class="nav-link  text-light   pr-lg-0 p-xl-2" th:href="@{/perfil}">Seu Perfil</a></li>
+            </ul>
+            <form class="form-inline buscar">
+                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+                <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+        </div>
+        <div class=" collapse-carrinho">
+            <a  th:href="@{/carrinho.html}" type="submit" class="btn btn-outline-dark ml-2 mr-4"><i
+                    class="fa fa-shopping-cart carrinho"><p id="cont">0</p></i></a>
+        </div>
+    </nav>
+</html>
+

@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout-padrao}">
 
+<body>
+<section layout:fragment="conteudo">
+    <div class="page-header" style="margin-top:100px;">
+        <div class="container-fluid">
+
+            <div class="container">
+                <div class="card" style="width: 18rem;" th:each="item : ${itens}">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${item.nome}">Card title</h5>
+<!--                        <h6 class="card-subtitle mb-2 text-muted" th:text="${item.categoria.nome}">Card subtitle</h6>-->
+                        <p class="card-text"><span th:text="${item.descricao}"></span></p>
+                        <a href="#" class="card-link"><span th:text="${item.valor}"></span></a>
+                        <a href="#" class="card-link">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>

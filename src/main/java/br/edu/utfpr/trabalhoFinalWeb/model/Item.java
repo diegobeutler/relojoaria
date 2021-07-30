@@ -4,8 +4,8 @@ import br.edu.utfpr.trabalhoFinalWeb.enumeration.CategoriaItemEnum;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.NotEmpty;
+//import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "ITEM")
@@ -21,13 +21,13 @@ public class Item {
     @Column(name = "ID_ITEM")
     private long idItem;
 
-    @NotEmpty(message="O campo nome deve ser preenchido")
-    @NotNull(message = "O campo nome não deve ser null")
+//    @NotEmpty(message="O campo nome deve ser preenchido")
+//    @NotNull(message = "O campo nome não deve ser null")
     @Column(name = "NOME", length = 80, nullable = false)
     private String nome;
 
-    @NotEmpty(message="O campo descrição deve ser preenchido")
-    @NotNull(message = "O campo descrição não deve ser null")
+//    @NotEmpty(message="O campo descrição deve ser preenchido")
+//    @NotNull(message = "O campo descrição não deve ser null")
     @Column(name = "DESCRICAO", length = 400, nullable = false)
     private String descricao;
 
