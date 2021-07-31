@@ -40,4 +40,7 @@ public class Item {
     @Enumerated(EnumType.STRING)
     @Column(name = "CATEGORIA_ITEM", length = 15)
     private CategoriaItemEnum categoriaItem;
+
+    @Column(name = "IMAGEM", length = 15)
+    private String imagem;
 }

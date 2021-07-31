@@ -77,21 +77,35 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <div class="container-fluid">
+        <div class="row">
+            <div th:each="item : ${itens}" class="col-lg-6  col-xl-3  mb-4 mb-sm-4 mb-xl-0 d-flex align-items-stretch">
+                <div id="card1" class="card my-card">
+                    <div class="card-header my-card-header">
+                        <h3 id="titulo1" class="text-center text-info card-title title-categoria"  th:text="${item.nome}"></h3>
+                    </div>
 
-            <div class="container">
-                <div class="card" style="width: 18rem;" th:each="item : ${itens}">
                     <div class="card-body">
-                        <h5 class="card-title" th:text="${item.nome}">Card title</h5>
-<!--                        <h6 class="card-subtitle mb-2 text-muted" th:text="${item.categoria.nome}">Card subtitle</h6>-->
-                        <p class="card-text"><span th:text="${item.descricao}"></span></p>
-                        <a href="#" class="card-link"><span th:text="${item.valor}"></span></a>
-                        <a href="#" class="card-link">Comprar</a>
+                        <a href="paginaInternaProduto1.html">
+                            <img id="img1"
+                                 th:src="@{|/images/${item.categoriaItem.toString().toLowerCase()}/out/${item.imagem}.jpg|}"
+                                 class="card-img-top img-thumbnail my-img"
+                                 alt="Relógio Olevs Masculino Em Aço Inoxidável Azul 2"
+                            />
+                        </a>
+                        <p id="descricao1" class="card-text text-justify mt-1" th:text="${item.descricao}"></p>
+                        <p class="preco-antigo"> De R$<s th:text="${item.valorAnterior}"></s> por R$ <u><strong id="preco1" class="preco" th:text="${item.valor}"></strong></u></p>
+                    </div>
+                    <div class="card-footer">
+                        <button th:id="adicionar+${item.idItem}"
+                                type="button"
+                                class="btn btn-secondary adquirir"
+                                onclick="adicionarCarrinho(${item.idItem})">Adicionar <i class="fa fa-cart-plus "></i></button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script src="js/index.js"></script>
 </section>
 </body>
 </html>
