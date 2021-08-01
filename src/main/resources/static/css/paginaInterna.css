@@ -1,0 +1,25 @@
+
+.cardPaginaInternaProduto {
+    margin-left:50px!important;
+}
+
+#imagemPrincipal {
+    max-height: 630px;
+}
+
+.card-body-pagina-interna {
+    border: none !important;
+    padding: 0 !important;
+}
+
+.card-header-pagina-interna {
+    background: none !important;
+}
+
+.card-footer-pagina-interna {
+    margin: 20px 0 !important;
+}
+
+.p-l-25 {
+    padding-left: 25%;
+}

@@ -1,7 +1,9 @@
 var arrayProdutosCarrinho = [];
 var cont = 0;
+var categoria;
 $(document).ready(() => {
     setNumeroProdutos(getArrayStorage('produtos').length);
+
 });
 function validarCampoObrigatorio(campo) {
     if (campo != '') {
@@ -197,4 +199,6 @@ function calcularFrete() {
     const isSedex = document.getElementById('sedex').checked;
     document.getElementById('valorFrete').innerHTML = isSedex ? 'Valor de envio: 20.00' : 'Valor de envio: 5.00';
 }
+
+
 

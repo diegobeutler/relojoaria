@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout-padrao}">
+
+<body class="background-color-principal">
+<section layout:fragment="conteudo" class="espacamento-nav">
+    <div class="msg-r-t">
+        <div id="msg" class="alert alert-dismissible fade show" role="alert"
+             hidden="true">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="row m-0 position-relative">
+        <div class="col-5 ml-2 mt-3">
+            <img id="imagemPrincipal"
+                 src="https://cdn.shopify.com/s/files/1/0267/4425/8739/products/Ha87afbe4728e420f8930a320d81c7d7bh_7d41c96a-d684-498e-8695-bfdf4e0f2518_500x.jpg?v=1608518135"
+                 class="card-img-top img-thumbnail my-img"
+                 alt="Relógio Olevs Masculino Em Aço Inoxidável Azul 2"/>
+        </div>
+        <div class="col-6 card float-right mt-3  cardPaginaInternaProduto mb-3">
+            <div class="card-header card-header-pagina-interna">
+                <h4 id="titulo" class="card-title" th:text="${item.nome}"></h4>
+                <p id="descricao" th:text="${item.descricao}">
+                </p>
+            </div>
+            <div class="card-body card-body-pagina-interna">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-center font-weight-bold border-0 cod-card">Cód: <label
+                            id="codPedido" th:text="${item.idItem}">6742</label></li>
+                    <li class="list-group-item border-0">Valor: R$ <label id="preco" th:text="${item.valor}">320,00</label></li>
+                    <li class="list-group-item border-0  desconto-card">Desconto de 15% no boleto = R$ <label th:text="${item.valor/100*85}"></label></li>
+                    <li class="list-group-item border-0">Frete: <br>
+                        <a class="small_a" href="#" data-toggle="modal" data-target="#formaEnvio"><small>Ver opções
+                            de
+                            entrega</small></a></li>
+                    <li class="list-group-item border-0">Quantidade:
+                        <input type="number" id="quantidade" min="1" value="0" onchange="calculaTotal()"/></li>
+                    <li class="list-group-item border-0">Total: <span id="total">0.00</span>
+                        <button type="button" class="btn btn-info float-right mr-3" data-toggle="modal"
+                                data-target="#modalVerParcelas">
+                            Ver Parcelas
+                        </button>
+                    </li>
+                    <li class="list-group-item border-0">Formas de pagamento:
+                        <div class="form-check  form-check-inline ml-2">
+                            <input id="boleto" class="form-check-input" type="radio" name="forma-pagamento"
+                                   value="boleto" checked/>
+                            <label class="form-check-label">Boleto</label>
+                        </div>
+                        <div id="cartao" class="form-check  form-check-inline">
+                            <input class="form-check-input" type="radio" name="forma-pagamento" value="cartao"/>
+                            <label class="form-check-label">Cartão</label>
+                        </div>
+                        <div class="form-check  form-check-inline">
+                            <input class="form-check-input" type="radio" name="forma-pagamento" value="pix"/>
+                            <label class="form-check-label">Pix</label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-footer card-footer-pagina-interna">
+                <button type="button" class="btn btn-success w-100"
+                        onclick="finalizarCompra()" data-toggle="modal"
+                        data-target="#modalFinalizaCompra">Adicionar ao Carrinho  <i class="fa fa-cart-plus "></i>
+                </button>
+            </div>
+
+<!--            <div class="card-footer">-->
+<!--                <button th:id="adicionar+${item.idItem}"-->
+<!--                        type="button"-->
+<!--                        class="btn btn-secondary adquirir"-->
+<!--                        onclick="adicionarCarrinho(${item.idItem})">Adicionar <i class="fa fa-cart-plus "></i>-->
+<!--                </button>-->
+<!--            </div>-->
+        </div>
+    </div>
+    <link rel="stylesheet" th:href="@{/css/paginaInterna.css}"/>
+</section>
+</body>
+</html>

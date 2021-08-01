@@ -1,5 +1,6 @@
 package br.edu.utfpr.trabalhoFinalWeb.controller;
 
+import br.edu.utfpr.trabalhoFinalWeb.enumeration.CategoriaItemEnum;
 import br.edu.utfpr.trabalhoFinalWeb.repository.ItemRepository;
 import br.edu.utfpr.trabalhoFinalWeb.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +18,20 @@ public class IndexController {
 	@GetMapping("")
 	public String index(Model model) {
 		model.addAttribute("itens", itemService.findAll());
+//		model.addAttribute("categorias")// fazer ficar as categorias relogios, aneis ...
 		return "index";
 	}
-//	@GetMapping("/relogios")
-//	public String index(Model model) {
-////		model.addAttribute("itens", itemRepository.findBy());
-//		return "index";
-//	}
 
-	@GetMapping(value = {"teste", "teste2"})
-	public String teste() {
-		return "login";
+	@GetMapping("/relogios")
+	public String relogios(Model model) {
+		model.addAttribute("itens", itemRepository.findByCategoriaItem(CategoriaItemEnum.RELOGIOS));
+		return "index";
+	}
+
+	@GetMapping("/aneis")
+	public String aneis(Model model) {
+		model.addAttribute("itens", itemRepository.findByCategoriaItem(CategoriaItemEnum.ANEIS));
+		return "index";
 	}
 	
 }

@@ -7,7 +7,7 @@
 
 <body class="background-color-principal">
 <section layout:fragment="conteudo">
-    <div class="page-header" style="margin-top:90px;">
+    <div class="page-header">
         <div class="msg-r-t">
             <div id="msg" class="alert alert-dismissible fade show" role="alert"
                  hidden="true">
@@ -16,7 +16,6 @@
                 </button>
             </div>
         </div>
-
 
         <div id="carouselExampleInterval" class="carousel slide espacamento-carousel p-0" data-ride="carousel">
             <div class="carousel-inner">
@@ -39,7 +38,8 @@
                         <h1>
                             <p>WARM SEASON</p>
                         </h1>
-                        <p>UMA COLEÇÃO EXCLUSIVA DA RELOJOARIA HORA CERTA QUE COMBINA UMA SELEÇÃO DE PEDRAS BRASILEIRAS EM
+                        <p>UMA COLEÇÃO EXCLUSIVA DA RELOJOARIA HORA CERTA QUE COMBINA UMA SELEÇÃO DE PEDRAS BRASILEIRAS
+                            EM
                             TONS MAIS
                             QUENTES. NESTA COLEÇÃO PREDOMINAM TURMALINAS, TOPÁZIOS E RUBELITAS COM LAPIDAÇÃO E BRILHO
                             MARCANTES.</p>
@@ -71,51 +71,59 @@
         </div>
         <div id="alertNaoAutenticado" class="alert alert-warning alert-dismissible fade show mt-3" role="alert"
              hidden="true">
-            Usuário não autenticado. Clique <a href="login.html" class="alert-link">aqui</a> e será direcionado para tela de
+            Usuário não autenticado. Clique <a href="login.html" class="alert-link">aqui</a> e será direcionado para
+            tela de
             login.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <button id="relogios"
-                type="button"
-                class="btn btn-secondary adquirir"
-                th:href="@{/relogios}"
-                onclick="adicionarCarrinho(${item.idItem})">Relogios <i class="fa fa-cart-plus "></i></button>
-        <button id="aneis"
-                type="button"
-                class="btn btn-secondary adquirir"
-                onclick="adicionarCarrinho(${item.idItem})">Aneis <i class="fa fa-cart-plus "></i></button>
 
-        <div class="row p-5 m-0">
-            <div th:each="item : ${itens}" class="col-lg-6  col-xl-3  mb-4 mb-sm-4 mb-xl-0 d-flex align-items-stretch">
-                <div id="card1" class="card my-card">
-                    <div class="card-header my-card-header">
-                        <h3 id="titulo1" class="text-center text-info card-title title-categoria" th:text="${item.nome}"></h3>
-                    </div>
+        <h5 class="filtrar text-right p-3">Filtrar por:
+            <select class="" id="categoria" placeholder="Categoria" onchange="filtrar()">
+                <option id="todos" value="todos">Todos</option>
+                <option id="aneisOp" value="aneis">Anéis</option>
+                <option id="relogiosOp" value="relogios">Relógios</option>
+            </select></h5>
+    </div>
 
-                    <div class="card-body">
-                        <a href="paginaInternaProduto1.html">
-                            <img id="img1"
-                                 th:src="@{|/images/${item.categoriaItem.toString().toLowerCase()}/out/${item.imagem}.jpg|}"
-                                 class="card-img-top img-thumbnail my-img"
-                                 alt="Relógio Olevs Masculino Em Aço Inoxidável Azul 2"
-                            />
-                        </a>
-                        <p id="descricao1" class="card-text text-justify mt-1" th:text="${item.descricao}"></p>
-                        <p class="preco-antigo"> De R$<s th:text="${item.valorAnterior}"></s> por R$ <u><strong id="preco1" class="preco" th:text="${item.valor}"></strong></u></p>
-                    </div>
-                    <div class="card-footer">
+    <div class="row p-3 m-0">
+        <!--        <div th:if="${itens}">-->
+        <div th:each="item : ${itens}" class="col-lg-6  col-xl-3  mb-4 mb-sm-4 mb-xl-0 d-flex align-items-stretch p-1">
+            <div id="card1" class="card my-card">
+                <div class="card-header my-card-header">
+                    <h3 id="titulo1" class="text-center text-info card-title title-categoria"
+                        th:text="${item.nome}"></h3>
+                </div>
+
+                <div class="card-body">
+                    <a th:href="@{/item/{id}(id=${item.idItem})}">
+                        <img th:id="img+${item.categoriaItem.toString().toLowerCase()}+${item.imagem} "
+                             th:src="@{|/images/${item.categoriaItem.toString().toLowerCase()}/out/${item.imagem}.jpg|}"
+                             class="card-img-top img-thumbnail my-img"
+                             th:alt="${item.nome}"
+                        />
+                    </a>
+                    <p id="descricao1" class="card-text text-justify mt-1" th:text="${item.descricao}"></p>
+                    <p class="preco-antigo"> De R$<s th:text="${item.valorAnterior}"></s> por R$ <u><strong id="preco1"
+                                                                                                            class="preco"
+                                                                                                            th:text="${item.valor}"></strong></u>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a class="color-white" th:href="@{/item/{id}(id=${item.idItem})}">
                         <button th:id="adicionar+${item.idItem}"
                                 type="button"
-                                class="btn btn-secondary adquirir"
-                                onclick="adicionarCarrinho(${item.idItem})">Adicionar <i class="fa fa-cart-plus "></i></button>
-                    </div>
+                                class="btn btn-secondary adquirir">Ver Mais <i class="fa fa-plus-circle "></i>
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-    <script src="js/index.js"></script>
+    </div>
+    <script type="text/javascript" th:src="@{/js/index.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>
 </section>
 </body>
 </html>

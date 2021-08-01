@@ -13,6 +13,9 @@
 
 <!--	<link rel="shortcut icon" th:href="@{/images/favicon.ico}"/>-->
 	<link rel="stylesheet" th:href="@{/css/navbar.css}"/>
+	<link rel="stylesheet" th:href="@{/css/footer.css}"/>
+	<link rel="stylesheet" th:href="@{/css/util.css}"/>
+
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}"/>
 	<link rel="stylesheet" th:href="@{/webjars/bootstrap-datepicker/1.9.0/dist/css/bootstrap-datepicker.min.css}"/>
 	<link rel="stylesheet" th:href="@{/webjars/sweetalert2/10.15.5/dist/sweetalert2.min.css}"/>
@@ -27,31 +30,7 @@
 <div class="container-fluid p-0">
 	<header>
 		<!-- Fixed navbar -->
-<!--		<div th:insert="layout/fragments/nav-bar :: navbar"></div>-->
-		<nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top" th:fragment="navbar">
-			<button class="navbar-toggler z-index" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-					aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-				<ul class="navbar-nav mr-auto mt-2 align-items-center">
-					<li class="content-logo"><a class="nav-link mt-1" th:href="@{/index.html}">
-						<img th:src="@{/images/logo.png}" class="d-inline-block img-thumbnail logo" alt="Logo"/>Relojoaria
-						Hora Certa</a></li>
-					<li><a class="nav-link text-light ml-2  pr-lg-0 p-xl-2" th:href="@{/login}">Login</a></li>
-					<li><a class="nav-link  text-light  pr-lg-0 p-xl-2" th:href="@{/cadastro}">Cadastrar-se</a></li>
-					<li><a class="nav-link  text-light   pr-lg-0 p-xl-2" th:href="@{/perfil}">Seu Perfil</a></li>
-				</ul>
-				<form class="form-inline buscar">
-					<input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-					<button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Buscar</button>
-				</form>
-			</div>
-			<div class=" collapse-carrinho">
-				<a  th:href="@{/carrinho.html}" type="submit" class="btn btn-outline-dark ml-2 mr-4"><i
-						class="fa fa-shopping-cart carrinho"><p id="cont">0</p></i></a>
-			</div>
-		</nav>
+		<div th:insert="layout/fragments/nav-bar :: navbar"></div>
 
 	</header>
 
@@ -60,7 +39,7 @@
 	</section>
 
 	<footer>
-		<div th:replace="layout/fragments/footer :: footer"></div>
+		<div th:insert="layout/fragments/footer :: footer"></div>
 	</footer>
 	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
@@ -68,7 +47,6 @@
 	<script type="text/javascript" th:src="@{/webjars/bootstrap-datepicker/1.9.0/dist/locales/bootstrap-datepicker.pt-BR.min.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/sweetalert2/10.15.5/dist/sweetalert2.min.js}"></script>
 	<script src="js/util.js"></script>
-
 
     <script type="text/javascript">
     	$('.datepicker').datepicker({
