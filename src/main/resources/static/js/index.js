@@ -3,7 +3,7 @@ function initPage(){
     const href= window.location.href;
     if(href.indexOf("aneis") > -1) document.getElementById('categoria').value = 'aneis';
     else if(href.indexOf("relogios") > -1) document.getElementById('categoria').value = 'relogios';
-    else document.getElementById('categoria').value = 'todos';
+    else document.getElementById('categoria').value = '';
 }
 
 $(document).ready(() => {

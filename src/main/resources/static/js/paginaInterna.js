@@ -1,8 +1,17 @@
-$(document).ready(() => {
-    if (!hasAuthentication()) {
-        showMessageAuthentication();
-    }
-});
+window.onload = initPage;
+function initPage() {
+    const valor = calcularValorBoleto();
+    document.getElementById('precoBoleto').innerHTML = valor;
+    const isSedex = document.getElementById('sedex').checked;
+    const valorEnvio = isSedex ? 20 : 5;
+    document.getElementById('total').innerHTML = (parseFloat(valor) + parseFloat(valorEnvio)).toFixed(2);
+    document.getElementById('precoFrete').innerHTML = valorEnvio.toFixed(2);
+}
+// $(document).ready(() => {
+//     if (!hasAuthentication()) {
+//         showMessageAuthentication();
+//     }
+// });
 
 function alternaImagem(id) {
     const elementImagemPrincipal = document.getElementById('imagemPrincipal');
@@ -12,10 +21,7 @@ function alternaImagem(id) {
 
 }
 
-function calculaTotal() {
-    const quantidade = document.getElementById('quantidade').value;
-    document.getElementById('total').innerHTML = (320 * quantidade).toFixed(2);
-}
+
 
 
 
@@ -77,6 +83,23 @@ function cancelarCompra() {
         time: 5000,
     });
 }
+
+function calcularValorBoleto(){
+    return (document.getElementById('preco').innerHTML / 100 * 85).toFixed(2);
+}
+
+function calculaTotal() {
+    const quantidade = document.getElementById('quantidade').value;
+    const isBoleto = document.getElementById('boleto').checked;
+    const isSedex = document.getElementById('sedex').checked;
+    const valorEnvio = isSedex ? 20 : 5
+    const valorUnit = isBoleto ? calcularValorBoleto() : document.getElementById('preco').innerHTML;
+    alert(valorUnit)
+    let valorTotal = (valorUnit * quantidade)+ valorEnvio;
+    alert(valorTotal)
+    document.getElementById('total').innerHTML = valorTotal.toFixed(2);
+}
+
 $(() => {
     $("#cep").mask("99999-999", {autoclear: false});
 })
