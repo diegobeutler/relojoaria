@@ -103,3 +103,4 @@ function calculaTotal() {
 $(() => {
     $("#cep").mask("99999-999", {autoclear: false});
 })
+// arrumar para quando alterar o frete alterar o valor total e o valor do frete

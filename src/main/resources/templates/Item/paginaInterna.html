@@ -19,7 +19,7 @@
     <div class="row m-0 position-relative">
         <div class="col-5 ml-2 mt-3">
             <img id="imagemPrincipal"
-                 src="https://cdn.shopify.com/s/files/1/0267/4425/8739/products/Ha87afbe4728e420f8930a320d81c7d7bh_7d41c96a-d684-498e-8695-bfdf4e0f2518_500x.jpg?v=1608518135"
+                 th:src="@{|/images/${item.categoriaItem.toString().toLowerCase()}/out/${item.imagem}.jpg|}"
                  class="card-img-top img-thumbnail my-img"
                  alt="Relógio Olevs Masculino Em Aço Inoxidável Azul 2"/>
         </div>

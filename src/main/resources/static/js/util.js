@@ -198,6 +198,7 @@ function addMensagem({messageType,message, time, callback=null,classe=null}){
 function calcularFrete() {
     const isSedex = document.getElementById('sedex').checked;
     document.getElementById('valorFrete').innerHTML = isSedex ? 'Valor de envio: R$ 20.00' : 'Valor de envio: R$ 5.00';
+    document.getElementById('precoFrete').innerHTML = isSedex ? '20.00':'5.00';
     calculaTotal();
 }
 
