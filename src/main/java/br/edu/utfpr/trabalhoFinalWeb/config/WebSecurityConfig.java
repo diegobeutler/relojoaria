@@ -35,6 +35,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 				.antMatchers("/produtora/**").hasAnyRole("USER", "ADMIN")
 				.antMatchers("/serie/**").hasRole("ADMIN")
 				.antMatchers("/cadastro/**").permitAll()
+				.antMatchers("/").permitAll()
+				.antMatchers("/aneis").permitAll()
+				.antMatchers("/relofgios").permitAll()
 				.antMatchers("/**").authenticated();
 	}
 	

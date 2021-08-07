@@ -28,7 +28,6 @@ public class ItemController {
 	private String form(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("item", itemService.findOne(id));
 		System.out.println(itemService.findOne(id));
-//		carregarCombos(model);
 		return "item/paginaInterna";
 	}
 }

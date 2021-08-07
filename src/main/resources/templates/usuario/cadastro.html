@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout-padrao-sem-rodape}">
+
+<body class="background-color-secundaria">
+
+
+<section layout:fragment="conteudo" class="espacamento-nav">
+
+
+    <div class="espacamento-nav pagina-usuario">
+        <h1 class="color-casatrar-se text-center">Cadastro</h1>
+        <ul id="listaErros"></ul>
+        <form method="post" action="" id="formCadastroUsuario">
+            <div class="row">
+                <legend class="float-left ml-3 font-weight-bold">Dados pessoais</legend>
+                <div class="col-6">
+                    <label for="nome">Nome*</label>
+                    <input class="form-control" type="text" name="nome" id="nome"/>
+                </div>
+                <div class="col-6">
+                    <label for="apelido">Apelido</label>
+                    <input class="form-control" type="text" name="apelido" id="apelido"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <label>Gênero: </label>
+                    <select class="form-control" id="genero" placeholder="Selecione">
+                        <option value="1">Masculino</option>
+                        <option value="2">Feminino</option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <label for="cpf">CPF*</label>
+                    <input id="cpf" type="text" name="cpf" class="form-control"
+                           placeholder="xxx.xxx.xxx-xx"/>
+                </div>
+                <div class="col-3">
+                    <label for="dataNasc">Data de Nascimento*</label>
+                    <input type="date" id="dataNasc" name="dataNasc" class="form-control"/>
+                </div>
+                <div class="col-3">
+                    <label for="telefone">Telefone*</label>
+                    <input class="form-control" type="text" id="telefone" name="telefone" placeholder="(xx)xxxxx-xxxx"/>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <legend class="float-left ml-3 font-weight-bold">Endereço*</legend>
+                <div class="col-2">
+                    <label for="cep" class="form-label"  placeholder="xxxxx-xxx">CEP*</label>
+                    <input id="cep" name="cep" type="text" class="form-control"/>
+                </div>
+                <div class="col-5">
+                    <label for="rua" class="form-label">Rua*</label>
+                    <input id="rua" name="rua" type="text" class="form-control"/>
+
+                </div>
+                <div class="col-5">
+                    <label for="bairro" class="form-label">Bairro</label>
+                    <input id="bairro" name="bairro" type="text" class="form-control"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label for="cidade" class="form-label">Cidade*</label>
+                    <input id="cidade" name="cidade" type="text" class="form-control"/>
+                </div>
+                <div class="col-2">
+                    <label for="estado" class="form-label">Estado*</label>
+                    <select class="form-control" id="estado" placeholder="estado">
+                        <option value="1">AC</option>
+                        <option value="2">AL</option>
+                        <option value="3">AM</option>
+                        <option value="4">AP</option>
+                        <option value="5">BA</option>
+                        <option value="6">CE</option>
+                        <option value="7">DF</option>
+                        <option value="8">ES</option>
+                        <option value="9">GO</option>
+                        <option value="10">MA</option>
+                        <option value="11">MT</option>
+                        <option value="12">MS</option>
+                        <option value="13">MG</option>
+                        <option value="14">PA</option>
+                        <option value="15">PB</option>
+                        <option value="16">PR</option>
+                        <option value="17">PE</option>
+                        <option value="18">PI</option>
+                        <option value="19">RJ</option>
+                        <option value="20">RN</option>
+                        <option value="21">RO</option>
+                        <option value="22">RS</option>
+                        <option value="23">RR</option>
+                        <option value="24">SC</option>
+                        <option value="25">SE</option>
+                        <option value="26">SP</option>
+                        <option value="27">TO</option>
+                    </select>
+                </div>
+                <div class="col-4">
+                    <label for="numero" class="form-label">Numero</label>
+                    <input id="numero" name="numero" type="text" class="form-control"/>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-7 ml-20 mt-5">
+                    <legend class="float-left font-weight-bold text-center mb-0 mt-2">Dados para login</legend>
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" class="form-control" placeholder="email@email.com">
+
+                    <label for="senha">Senha</label>
+                    <input id="senha" class="form-control" type="password" placeholder="Senha"/>
+
+                    <label for="confirmarSenha">Confirme sua Senha</label>
+                    <input id="confirmarSenha" class="form-control" type="password" placeholder="Confirme sua senha"/>
+                    <div class="mt-2">
+                        <button type="submit" id="cadastrar" name="cadastrar" class="btn btn-primary">Cadastrar-se
+                        </button>
+                        <small>Já é cadastrado ? <a class="small_a" href="../login.html">Faça seu login</a></small>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="http://ajax.microsoft.com/ajax/jquery.validate/1.7/jquery.validate.js" type="text/javascript"></script>
+<script src="./js/util.js"></script>
+<script src="./js/cadastro.js"></script>
+<script type="text/javascript" src="js/jquery.maskedinput.js"></script>
+<script src="bootstrap4/js/bootstrap.js" type="text/javascript" charset="utf-8" async defer></script>
+<script src="./js/valida.js"></script>
+</section>
+</body>
+</html>

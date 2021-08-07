@@ -1,11 +1,3 @@
-window.onload = initPage;
-function initPage(){
-    const href= window.location.href;
-    if(href.indexOf("aneis") > -1) document.getElementById('categoria').value = 'aneis';
-    else if(href.indexOf("relogios") > -1) document.getElementById('categoria').value = 'relogios';
-    else document.getElementById('categoria').value = '';
-}
-
 $(document).ready(() => {
 
     // const alertNaoAutenticado = document.getElementById('alertNaoAutenticado');
@@ -32,8 +24,17 @@ $(document).ready(() => {
     //     });
     // }
     setImagens();
-    setBotoesAdicionar();
+    // setBotoesAdicionar();
 });
+window.onload = initPage;
+function initPage(){
+    const href= window.location.href;
+    if(href.indexOf("aneis") > -1) document.getElementById('categoria').value = 'aneis';
+    else if(href.indexOf("relogios") > -1) document.getElementById('categoria').value = 'relogios';
+    else document.getElementById('categoria').value = '';
+}
+
+
 
 function setImagens() {
     // Relógios
@@ -99,17 +100,17 @@ function setImage({numImg, cat, over, out}) {
     });
 }
 
-function setBotoesAdicionar() {
-    var produtos = getArrayStorage('produtos');
-    for (let i = 0; i < 8; i++) {
-        const element = document.getElementById('titulo' + (i + 1));
-        const index = produtos.findIndex(prod => prod.titulo == element.innerHTML);
-        const btnAdicionar = document.getElementById('adicionar' + (i + 1));
-        if (index != -1) {
-            btnAdicionar.innerHTML = btnAdicionar.innerHTML.replace('Adicionar', 'Remover');
-        }
-    }
-}
+// function setBotoesAdicionar() {
+//     var produtos = getArrayStorage('produtos');
+//     for (let i = 0; i < 8; i++) {
+//         const element = document.getElementById('titulo' + (i + 1));
+//         const index = produtos.findIndex(prod => prod.titulo == element.innerHTML);
+//         const btnAdicionar = document.getElementById('adicionar' + (i + 1));
+//         if (index != -1) {
+//             btnAdicionar.innerHTML = btnAdicionar.innerHTML.replace('Adicionar', 'Remover');
+//         }
+//     }
+// }
 
 function filtrar() {
      categoria = document.getElementById('categoria').value;
