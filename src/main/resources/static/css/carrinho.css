@@ -1,0 +1,37 @@
+.card-footer-carrinho {
+    margin: 20px 0 !important;
+}
+
+.listaInfoCarrinho {
+    margin-top: 100px !important;
+    margin-left: 55%;
+}
+
+.preco-carrinho {
+    float: right !important;
+    margin-left: auto !important;
+    padding-right: 10%;
+    font-weight: bold;
+}
+
+.list-item-carrinho {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.listaProdutos {
+    margin-top: 100px !important;
+}
+
+.p-l-30 {
+    padding-left: 30%;
+}
+
+.quantidadeProd {
+    text-align: center;
+    padding: 0 8px;
+    margin: 0  0 0 5px;
+    background: #1c5edb;
+    border-radius: 100%;
+    color: #fff;
+}

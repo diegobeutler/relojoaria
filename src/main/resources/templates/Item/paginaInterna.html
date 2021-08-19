@@ -32,7 +32,7 @@
             <div class="card-body card-body-pagina-interna">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item text-center font-weight-bold border-0 cod-card">Cód: <label
-                            id="codPedido" th:text="${item.idItem}">6742</label></li>
+                            id="codPedido" th:text="${item.idItem}"></label></li>
                     <li class="list-group-item border-0">Valor: R$ <label id="preco" th:text="${item.valor}"></label></li>
                     <li class="list-group-item border-0  desconto-card">Desconto de 15% no boleto = R$ <label id="precoBoleto"></label></li>
                     <li class="list-group-item border-0">Frete:  R$ <label id="precoFrete"></label><br>
@@ -66,8 +66,8 @@
             </div>
             <div class="card-footer card-footer-pagina-interna">
                 <button type="button" class="btn btn-success w-100"
-                        onclick="finalizarCompra()" data-toggle="modal"
-                        data-target="#modalFinalizaCompra">Adicionar ao Carrinho  <i class="fa fa-cart-plus "></i>
+                        onclick="setarDadosModal()" data-toggle="modal"
+                        data-target="#modalAdicionarCarrinho">Adicionar ao Carrinho  <i class="fa fa-cart-plus "></i>
                 </button>
             </div>
 
@@ -174,20 +174,19 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalFinalizaCompra" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="modalAdicionarCarrinho" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header text-center">
-                    <h3 class="text-center p-l-25">Finalizar Compra</h3>
+                    <h3 class="text-center p-l-25">Adicionar ao Carrinho</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class=" card">
-
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item text-center cod-card border-0">Código da compra: 6742</li>
+                            <li class="list-group-item text-center cod-card border-0">Código do item: <label id="idItem" th:text="${item.idItem}"></label></li>
                             <li class="list-group-item  border-0">Forma de envio: <label id="tipoFretePedido"></label>
                             <li class="list-group-item  border-0">Forma de pagamento: <label
                                     id="formaPagamentoPedido"></label></li>
@@ -196,8 +195,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary w-100" onclick="salvarCompra()">Salvar</button>
-                    <button type="button" class="btn btn-secondary w-100" data-dismiss="modal" onclick="cancelarCompra()">
+                    <button type="button" class="btn btn-primary w-100"  data-dismiss="modal" onclick="addItemCarrinho()">Adicionar</button>
+                    <button type="button" class="btn btn-secondary w-100" data-dismiss="modal" onclick="cancelarAddItemCarrinho()">
                         Cancelar
                     </button>
                 </div>

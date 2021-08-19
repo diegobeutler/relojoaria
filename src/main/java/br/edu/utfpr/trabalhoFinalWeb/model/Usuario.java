@@ -1,10 +1,9 @@
 package br.edu.utfpr.trabalhoFinalWeb.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.util.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.NumberFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -38,6 +39,35 @@ public class Usuario implements Serializable,
 
 	@Column(length = 255, nullable = false)
 	private String nome;
+
+	@Column(length = 255)
+	private String apelido;
+
+	@Column( nullable = false, length = 14)
+	private String cpf;
+
+	@Column( nullable = false)
+	private String genero;
+
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+	private LocalDate dataNasc;
+
+	//@Column( nullable = false)
+	private String telefone;
+
+	@Column( nullable = false, length = 14)
+	private String cep;
+
+	//@Column( nullable = false)
+	private String rua;
+
+	private String bairro;
+
+	private String cidade;
+
+	private String estado;
+
+	private String numero;
 
 	@Column(length = 100, nullable = false)
 	private String username;
@@ -76,6 +106,17 @@ public class Usuario implements Serializable,
 		return true;
 	}
 
+	public void setDataNasc(LocalDate dataNasc) {
+		this.dataNasc = dataNasc;
+	}
+
+	public void setDataNasc(String dataNasc) {
+		this.dataNasc = LocalDate.now();
+	}
+
+	public LocalDate getDataNasc() {
+		return dataNasc;
+	}
 }
 
 

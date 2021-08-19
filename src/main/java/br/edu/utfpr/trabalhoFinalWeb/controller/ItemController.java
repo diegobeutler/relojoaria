@@ -27,7 +27,6 @@ public class ItemController {
 	@GetMapping("{id}")
 	private String form(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("item", itemService.findOne(id));
-		System.out.println(itemService.findOne(id));
 		return "item/paginaInterna";
 	}
 }

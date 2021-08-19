@@ -92,19 +92,19 @@
         <div th:each="item : ${itens}" class="col-lg-6  col-xl-3  mb-4 mb-sm-4 mb-xl-0 d-flex align-items-stretch p-1">
             <div id="card1" class="card my-card">
                 <div class="card-header my-card-header">
-                    <h3 id="titulo1" class="text-center text-info card-title title-categoria"
+                    <h3 th:id="titulo+${item.idItem}" class="text-center text-info card-title title-categoria"
                         th:text="${item.nome}"></h3>
                 </div>
 
                 <div class="card-body">
                     <a th:href="@{/item/{id}(id=${item.idItem})}">
-                        <img th:id="img+${item.categoriaItem.toString().toLowerCase()}+${item.imagem} "
+                        <img th:id="img+${item.categoriaItem.toString().toLowerCase()}+${item.imagem}"
                              th:src="@{|/images/${item.categoriaItem.toString().toLowerCase()}/out/${item.imagem}.jpg|}"
                              class="card-img-top img-thumbnail my-img"
                              th:alt="${item.nome}"
                         />
                     </a>
-                    <p id="descricao1" class="card-text text-justify mt-1" th:text="${item.descricao}"></p>
+                    <p th:id="descricao+${item.idItem}" class="card-text text-justify mt-1" th:text="${item.descricao}"></p>
                     <p class="preco-antigo"> De R$<s th:text="${item.valorAnterior}"></s> por R$ <u><strong id="preco1"
                                                                                                             class="preco"
                                                                                                             th:text="${item.valor}"></strong></u>

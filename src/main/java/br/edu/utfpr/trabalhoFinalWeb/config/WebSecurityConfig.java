@@ -3,6 +3,7 @@ package br.edu.utfpr.trabalhoFinalWeb.config;
 import br.edu.utfpr.trabalhoFinalWeb.service.impl.UsuarioServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -31,13 +32,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			.and().logout()
 			.logoutSuccessUrl("/login")
 			.and().authorizeRequests()
-				.antMatchers("/genero/**").hasAnyRole("USER", "ADMIN")
-				.antMatchers("/produtora/**").hasAnyRole("USER", "ADMIN")
-				.antMatchers("/serie/**").hasRole("ADMIN")
-				.antMatchers("/cadastro/**").permitAll()
-				.antMatchers("/").permitAll()
-				.antMatchers("/aneis").permitAll()
-				.antMatchers("/relofgios").permitAll()
+				.antMatchers("/pedidos/**").hasAnyRole("USER", "ADMIN")
+				.antMatchers("/checkout/**").hasAnyRole("USER", "ADMIN")//tela de finalizar pedido no carrinho
+				.antMatchers("/usuario/cadastro/**").permitAll()
+				.antMatchers(HttpMethod.GET,"/").permitAll()
+				.antMatchers(HttpMethod.GET,"/index").permitAll()
+				.antMatchers(HttpMethod.GET,"/aneis").permitAll()
+				.antMatchers(HttpMethod.GET,"/item/**").permitAll()
+				.antMatchers(HttpMethod.GET,"/relogios").permitAll()
+				.antMatchers(HttpMethod.GET,"/carrinho").permitAll()
 				.antMatchers("/**").authenticated();
 	}
 	

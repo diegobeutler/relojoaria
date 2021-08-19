@@ -2,7 +2,7 @@ var arrayProdutosCarrinho = [];
 var cont = 0;
 var categoria;
 $(document).ready(() => {
-    setNumeroProdutos(getArrayStorage('produtos').length);
+    setNumeroProdutos(getArrayStorage('itensCarrinho').length);
 
 });
 function validarCampoObrigatorio(campo) {
@@ -84,9 +84,9 @@ function getStorage( chave) {
     return JSON.parse(localStorage.getItem(chave));
 }
 
-function getUsuarioLogadoStorage() {
-    return JSON.parse(localStorage.getItem('usuarioLogado')) || null;
-}
+// function getUsuarioLogadoStorage() {
+//     return JSON.parse(localStorage.getItem('usuarioLogado')) || null;
+// }
 
 function getUsuarioForm(formParam, id = (getArrayStorage('usuarios').length - 1) >= 0 ? getArrayStorage('usuarios').length : 0) {
     let form = document.querySelector(formParam);
@@ -120,7 +120,7 @@ function showMessageAuthentication() {
 }
 
 function voltaTelaInicial(paginaAtual) {
-    window.location.href = window.location.href.replace(paginaAtual, 'index');
+    window.location.href = window.location.href.replace(paginaAtual, '');
 }
 
 function navegaTelaLogin(paginaAtual) {
@@ -141,40 +141,68 @@ function setNumeroProdutos(numeroProdutos) {
     document.getElementById("cont").innerHTML = numeroProdutos;
 }
 
-function setProduto(numElement) {
-    var produto = novoProduto(numElement);
-    arrayProdutosCarrinho = getArrayStorage('produtos');
-    const index = arrayProdutosCarrinho.findIndex(prod => prod.titulo == produto.titulo);
-    const btnAdicionar = document.getElementById('adicionar' + numElement);
-    numeroProdutos(index === -1);
-    if (index === -1) {
-        arrayProdutosCarrinho.push(produto);
-        setArrayStorage('produtos', arrayProdutosCarrinho);
-        btnAdicionar.innerHTML = btnAdicionar.innerHTML.replace('Adicionar', 'Remover');
-    } else {
-        btnAdicionar.innerHTML = btnAdicionar.innerHTML.replace('Remover', 'Adicionar');
-        arrayProdutosCarrinho.splice(index, 1);
-        setArrayStorage('produtos', arrayProdutosCarrinho);
-    }
+function addItemCarrinho() {
+    const itemCarrinho = novoItemCarrinho();
+    arrayProdutosCarrinho = getArrayStorage('itensCarrinho');
+    arrayProdutosCarrinho.push(itemCarrinho);
+    setArrayStorage('itensCarrinho', arrayProdutosCarrinho);
+    setNumeroProdutos(arrayProdutosCarrinho.length);
+    addMensagem({
+        messageType: 'alert-success',
+        message: 'Item adicionado com sucesso !',
+        time: 5000,
+    });
 }
 
-function adicionarCarrinho(numElement) {
-    setProduto(numElement);
-}
-
-function novoProduto(numElement) {
-    const titulo = document.getElementById('titulo' + numElement);
-    const srcImagem = document.getElementById('img' + numElement);
-    const descricao = document.getElementById('descricao' + numElement);
-    const preco = document.getElementById('preco' + numElement);
-    const produto = {
-        titulo: titulo.innerHTML,
+function novoItemCarrinho() {
+    
+    // forma do pedido
+    const isBoleto = document.getElementById('boleto').checked;
+    const isCartao = document.getElementById('cartao').checked;
+    const numeroParcelas = document.getElementById('qtdParcela').value;
+    const isSedex = document.getElementById('sedex').checked;
+    const srcImagem = document.getElementById('imagemPrincipal');// ver idItem
+    let produto={
+        idItem: $('#idItem').text(),
+        titulo: $('#titulo').text(),
+        descricao:$('#descricao').text(),
         srcImagem: srcImagem.getAttribute('src'),
-        descricao: descricao.innerHTML,
-        preco: preco.innerHTML,
-        quantidade: 1
+        preco: parseFloat($('#preco').text()).toFixed(2),
+        quantidade:$('#quantidade').val()
     }
-    return produto;
+    let itemCarrinho = {
+        codigo: $('#codPedido').text(),
+        // usuario: getUsuarioLogadoStorage(),
+        produto: produto,
+        qtdProdutos: getArrayStorage('itensCarrinho').length+1,// ver se precisa
+        formaPagamento: isBoleto ? 'Boleto' : isCartao ? 'Cartão' : 'Pix',
+        numeroParcelas: numeroParcelas,
+        valorTotal: parseFloat(document.getElementById('total').innerHTML).toFixed(2),
+        frete: isSedex ? 'SEDEX' : 'PAC',
+        valorFrete: isSedex ? 20.00 : 5.00
+    }
+
+    return itemCarrinho;
+    // setArrayStorage('compraPaginaInterna',compra);
+    // $('#modalFinalizaCompra').modal('hide');
+    // addMensagem({
+    //     messageType: 'alert-success',
+    //     message: 'Compra salva com sucesso !',
+    //     time: 5000,
+    // });
+    // forma do carrinho
+    // const titulo = document.getElementById('titulo' + numElement);
+    // const srcImagem = document.getElementById('img' + numElement);// ver categoria
+    // const descricao = document.getElementById('descricao' + numElement);
+    // const preco = document.getElementById('preco' + numElement);
+    // const produto = {
+    //     titulo: titulo.innerHTML,
+    //     srcImagem: srcImagem.getAttribute('src'),
+    //     descricao: descricao.innerHTML,
+    //     preco: preco.innerHTML,
+    //     quantidade: 1
+    // }
+    // return produto;
 }
 
 function addMensagem({messageType,message, time, callback=null,classe=null}){
