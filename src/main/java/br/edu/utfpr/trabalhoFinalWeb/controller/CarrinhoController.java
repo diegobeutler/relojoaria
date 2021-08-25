@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CarrinhoController {
 
     @GetMapping("")
-    private String cadastro(){
+    private String carrinho(){
         return "carrinho";
     }
 

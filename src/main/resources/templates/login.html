@@ -26,6 +26,9 @@
                                 <button type="submit" id="entrar" name="entrar" class="btn btn-primary">Entrar</button>
                                 <small>Não é cadastrado ? <a class="small_a"
                                                              th:href="@{/usuario/cadastro}">Cadastre-se</a></small>
+
+                                <small>Esqueceu a senha ? <a class="small_a"
+                                                             th:href="@{/usuario/reset}">Redefinir</a></small>
                             </div>
                             <div class="alert alert-danger" th:if="${#bools.isTrue(param.error)}">
                                 O usuário e/ou senha inválido(s)!

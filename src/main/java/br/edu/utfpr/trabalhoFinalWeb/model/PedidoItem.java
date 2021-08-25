@@ -12,7 +12,7 @@ import java.math.BigInteger;
 @NoArgsConstructor
 @Builder
 @EqualsAndHashCode(of = "idPedidoItem")
-public class PedidoITem {
+public class PedidoItem {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
@@ -31,6 +31,7 @@ public class PedidoITem {
     private Integer quantidade;
 
     @Column(name = "VALOR_UNITARIO")
-    private BigInteger ValorUnitario;
+    private Double valorUnitario;
+
 
 }

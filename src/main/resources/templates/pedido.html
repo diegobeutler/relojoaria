@@ -18,6 +18,7 @@
         </div>
     </div>
     <div class="row">
+        <form th:action="@{/pedido}" method="post" id="formPedido">
         <div class="col-lg-6 col-md-6 listaProdutos">
             <div class="card">
                 <div class="card-header">
@@ -69,13 +70,11 @@
                 </li>
             </ul>
             <div class="card-footer card-footer-carrinho">
-
-               <a href="/pedido"><button  type="button" class="btn btn-success w-100"
-                        onclick="finalizarCarrinho()">Finalizar Pedido
-<!--                    aqui verificar antes se está autenticado -->
-                </button></a>
+              <button  type="button" class="btn btn-success w-100"
+                        onclick="finalizarCompra()">Salvar Pedido</button>
             </div>
         </div>
+        </form>
     </div>
 
 
@@ -240,6 +239,7 @@
     <script type="text/javascript" src="js/jquery.maskedinput.js"></script>
     <!--    <script src="bootstrap4/js/bootstrap.js" type="text/javascript" charset="utf-8" async defer></script>-->
     <script type="text/javascript" th:src="@{/js/carrinho.js}"></script>
+    <script type="text/javascript" th:src="@{/js/pedido.js}"></script>
     <link rel="stylesheet" th:href="@{/css/index.css}"/>
 </section>
 </body>

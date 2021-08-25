@@ -15,9 +15,9 @@ function initPage() {
     });
 }
 
-$(document).ready(() => {
-
-});
+// $(document).ready(() => {
+//
+// });
 
 function novoLi(itemCarrinho) {
     liProduto = document.createElement('li');
@@ -32,7 +32,7 @@ function novoLi(itemCarrinho) {
     let btExcluir = novoBotao('a', ['excluir']);
     btSomar.innerHTML = '<i class="fa fa-plus"></i>';
     lbQuantidade.innerHTML = '<label>1</label>';
-    lbQuantidade.textContent = itemCarrinho.produto.quantidade;
+    lbQuantidade.textContent = itemCarrinho.quantidade;
     btSubtrair.innerHTML = '<i class="fa fa-minus"></i>';
     btExcluir.innerHTML = '<i class="fa fa-trash"></i>';
 
@@ -57,32 +57,32 @@ function novoLi(itemCarrinho) {
 
     document.querySelector('#lista').appendChild(liProduto);
 
-    lbProduto.textContent = itemCarrinho.produto.titulo;
-    spProduto.textContent = itemCarrinho.produto.preco;
-    imgProduto.setAttribute('src', itemCarrinho.produto.srcImagem);
+    lbProduto.textContent = itemCarrinho.titulo;
+    spProduto.textContent = itemCarrinho.preco;
+    imgProduto.setAttribute('src', itemCarrinho.srcImagem);
 
     totalLabel = document.querySelector("#totalListaProdutos");
 
     liProduto.querySelector('.somar').addEventListener('click', (e) => {
         e.preventDefault()
         arrayCarrinho = getArrayStorage('itensCarrinho');
-        const index = arrayCarrinho.findIndex(item => item.produto.titulo == itemCarrinho.produto.titulo);// ver para usar código e assim não pode ter duas vezes o mesmo item
-        arrayCarrinho[index].produto.quantidade++;
+        const index = arrayCarrinho.findIndex(item => item.idItem == itemCarrinho.idItem);
+        arrayCarrinho[index].quantidade++;
         setArrayStorage('itensCarrinho', arrayCarrinho);
         lbQuantidade.textContent = parseInt(lbQuantidade.textContent) + 1;
-        setTotal(somar(Number(itemCarrinho.produto.preco.replace(',00', '').replace(/([^\d])+/gim, '')), Number(totalLabel.textContent)));
+        setTotal(somar(itemCarrinho.preco,totalLabel.textContent));
 
     })
 
     liProduto.querySelector('.subtrair').addEventListener('click', (e) => {
         e.preventDefault()
         arrayCarrinho = getArrayStorage('itensCarrinho');
-        const index = arrayCarrinho.findIndex(prod => prod.id == itemCarrinho.produto.id);
-        if (arrayCarrinho[index].produto.quantidade > 1) {
-            arrayCarrinho[index].produto.quantidade--;
+        const index = arrayCarrinho.findIndex(prod => prod.idItem == itemCarrinho.idItem);
+        if (arrayCarrinho[index].quantidade > 1) {
+            arrayCarrinho[index].quantidade--;
             setArrayStorage('itensCarrinho', arrayCarrinho);
             lbQuantidade.textContent = parseInt(lbQuantidade.textContent) - 1;
-            setTotal(subtrair(Number(totalLabel.textContent), Number(itemCarrinho.produto.preco.replace(',00', '').replace(/([^\d])+/gim, ''))));
+            setTotal(subtrair(totalLabel.textContent, itemCarrinho.preco));
         } else {
             produtoExcluir = itemCarrinho;
             elementExcluir = e;
@@ -96,7 +96,7 @@ function novoLi(itemCarrinho) {
         $("#excluir").modal();
 
     })
-    let preco = Number(itemCarrinho.produto.preco) * itemCarrinho.produto.quantidade;//.replace(',00', '').replace(/([^\d])+/gim, '')
+    let preco = Number(itemCarrinho.preco) * itemCarrinho.quantidade;
     subtotal += preco;
      setTotal(subtotal);
 }
@@ -113,18 +113,28 @@ function novoBotao(elemento, classe) {
 }
 
 function somar(num1, num2) {
-    return num1 + num2;
+    const val1 = num1||0;
+    const val2 = num2||0;
+    return Number(val1) + Number(val2);
 }
 
 function subtrair(num1, num2) {
-    return num1 - num2;
+    const val1 = num1||0;
+    const val2 = num2||0;
+    return Number(val1) - Number(val2);
+}
+
+function multiplicar(num1, num2) {
+    const val1 = num1||0;
+    const val2 = num2||0;
+    return Number(val1) * Number(val2);
 }
 
 function confirmaExclusao() {
     totalLabel = document.querySelector("#totalListaProdutos");
     arrayCarrinho = getArrayStorage('itensCarrinho');
-    let index = arrayCarrinho.findIndex(produto => produto.produto.idItem == produtoExcluir.produto.idItem);
-    setTotal(subtrair(Number(totalLabel.textContent), Number(produtoExcluir.produto.preco.replace(/([^\d])+/gim, '')) * arrayCarrinho[index].quantidade));
+    let index = arrayCarrinho.findIndex(produto => produto.idItem == produtoExcluir.idItem);
+    setTotal((subtrair(totalLabel.textContent, multiplicar(produtoExcluir.preco, arrayCarrinho[index].quantidade))));
     arrayCarrinho.splice(index, 1);
     setArrayStorage('itensCarrinho', arrayCarrinho);
     elementExcluir.preventDefault();
@@ -154,7 +164,7 @@ function calculaValorTotalPedido() {
     const isBoleto = document.getElementById('boleto').checked;
     const isSedex = document.getElementById('sedex').checked;
     let valorTotal = isBoleto ? document.getElementById('totalDescontoBoleto').innerHTML : parseFloat(document.getElementById('totalResumo').innerHTML);
-    valorTotal += isSedex ? 20 : 5;
+    valorTotal = somar(isSedex ? 20 : 5, valorTotal);
     return valorTotal;
 }
 
@@ -218,6 +228,13 @@ function cancelarPedido() {
         message: 'Atenção seu pedido não foi salvo !',
         time: 5000,
     });
+}
+
+function calcularFretePedido() {
+    const isSedex = document.getElementById('sedex').checked;
+    document.getElementById('precoFrete').innerHTML = isSedex ? '20.00':'5.00';
+    document.getElementById('valorFreteModal').innerHTML = isSedex ? 'Valor de envio: R$ 20.00' : 'Valor de envio: R$ 5.00';
+    changeValorTotal();
 }
 
 //

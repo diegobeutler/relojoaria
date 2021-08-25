@@ -1,7 +1,9 @@
 package br.edu.utfpr.trabalhoFinalWeb.service.impl;
 
 
+import br.edu.utfpr.trabalhoFinalWeb.model.PasswordResetToken;
 import br.edu.utfpr.trabalhoFinalWeb.model.Usuario;
+import br.edu.utfpr.trabalhoFinalWeb.repository.PasswordTokenRepository;
 import br.edu.utfpr.trabalhoFinalWeb.repository.PermissaoRepository;
 import br.edu.utfpr.trabalhoFinalWeb.repository.UsuarioRepository;
 import br.edu.utfpr.trabalhoFinalWeb.service.UsuarioService;
@@ -28,6 +30,9 @@ public class UsuarioServiceImpl extends CrudServiceImpl<Usuario, Long>
 
 	@Autowired
 	private PermissaoRepository permissaoRepository;
+
+	@Autowired
+	private PasswordTokenRepository passwordTokenRepository;
 	
 	@Override
 	protected JpaRepository<Usuario, Long> getRepository() {
@@ -48,6 +53,16 @@ public class UsuarioServiceImpl extends CrudServiceImpl<Usuario, Long>
 		entity.setPassword(encoder.encode(entity.getPassword()));
 		entity.setPermissoes(Set.of(permissaoRepository.findByNome("ROLE_USER")));
 		return super.save(entity);
+	}
+
+	public void createPasswordResetTokenForUser(Usuario usuario, String token) {
+		PasswordResetToken myToken = new PasswordResetToken(token, usuario);
+		passwordTokenRepository.save(myToken);
+	}
+
+	public void changeUserPassword(Usuario usuario, String newPassword){
+		usuario.setPassword(encoder.encode(newPassword));
+		super.save(usuario);
 	}
 
 }

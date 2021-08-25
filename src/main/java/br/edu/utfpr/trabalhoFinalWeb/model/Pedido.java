@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "PEDIDO")
@@ -30,5 +31,8 @@ public class Pedido {
     @Enumerated(EnumType.STRING)
     @Column(name = "TIPO_PAGAMENTO", length = 15)
     private TipoPagamento tipoPagamento;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<PedidoItem> pedidoItens;
 
 }

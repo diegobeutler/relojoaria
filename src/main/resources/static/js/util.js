@@ -88,28 +88,28 @@ function getStorage( chave) {
 //     return JSON.parse(localStorage.getItem('usuarioLogado')) || null;
 // }
 
-function getUsuarioForm(formParam, id = (getArrayStorage('usuarios').length - 1) >= 0 ? getArrayStorage('usuarios').length : 0) {
-    let form = document.querySelector(formParam);
-    let usuario = {
-        id: id,
-        nome: form.nome.value,
-        apelido: form.apelido.value,
-        genero: form.genero.value,
-        cpf: form.cpf.value,
-        dataNasc: form.dataNasc.value,
-        telefone: form.telefone.value,
-        cep: form.cep.value,
-        cidade: form.cidade.value,
-        estado: form.estado.value,
-        bairro: form.bairro.value,
-        rua: form.rua.value,
-        numero: form.numero.value,
-        email: form.email.value,
-        senha: form.senha.value,
-        confirmarSenha: form.confirmarSenha.value
-    }
-    return usuario;
-}
+// function getUsuarioForm(formParam, id = (getArrayStorage('usuarios').length - 1) >= 0 ? getArrayStorage('usuarios').length : 0) {
+//     let form = document.querySelector(formParam);
+//     let usuario = {
+//         id: id,
+//         nome: form.nome.value,
+//         apelido: form.apelido.value,
+//         genero: form.genero.value,
+//         cpf: form.cpf.value,
+//         dataNasc: form.dataNasc.value,
+//         telefone: form.telefone.value,
+//         cep: form.cep.value,
+//         cidade: form.cidade.value,
+//         estado: form.estado.value,
+//         bairro: form.bairro.value,
+//         rua: form.rua.value,
+//         numero: form.numero.value,
+//         email: form.email.value,
+//         senha: form.senha.value,
+//         confirmarSenha: form.confirmarSenha.value
+//     }
+//     return usuario;
+// }
 
 function hasAuthentication() {
     return getUsuarioLogadoStorage() !== null;
@@ -144,65 +144,52 @@ function setNumeroProdutos(numeroProdutos) {
 function addItemCarrinho() {
     const itemCarrinho = novoItemCarrinho();
     arrayProdutosCarrinho = getArrayStorage('itensCarrinho');
-    arrayProdutosCarrinho.push(itemCarrinho);
-    setArrayStorage('itensCarrinho', arrayProdutosCarrinho);
-    setNumeroProdutos(arrayProdutosCarrinho.length);
     addMensagem({
         messageType: 'alert-success',
-        message: 'Item adicionado com sucesso !',
+        message: hasItemCarrinho ? 'Item atualizado com sucesso !' : 'Item adicionado com sucesso !',
         time: 5000,
     });
+    if (hasItemCarrinho) {
+        arrayProdutosCarrinho[indexItem] = itemCarrinho;
+    } else {
+        arrayProdutosCarrinho.push(itemCarrinho);
+        hasItemCarrinho = true;
+        setNumeroProdutos(arrayProdutosCarrinho.length);
+    }
+    setArrayStorage('itensCarrinho', arrayProdutosCarrinho);
 }
 
 function novoItemCarrinho() {
-    
-    // forma do pedido
-    const isBoleto = document.getElementById('boleto').checked;
-    const isCartao = document.getElementById('cartao').checked;
-    const numeroParcelas = document.getElementById('qtdParcela').value;
-    const isSedex = document.getElementById('sedex').checked;
-    const srcImagem = document.getElementById('imagemPrincipal');// ver idItem
-    let produto={
+    const srcImagem = document.getElementById('imagemPrincipal');
+    let produto = {
         idItem: $('#idItem').text(),
         titulo: $('#titulo').text(),
         descricao:$('#descricao').text(),
-        srcImagem: srcImagem.getAttribute('src'),
         preco: parseFloat($('#preco').text()).toFixed(2),
+        srcImagem: srcImagem.getAttribute('src'),
         quantidade:$('#quantidade').val()
     }
-    let itemCarrinho = {
-        codigo: $('#codPedido').text(),
-        // usuario: getUsuarioLogadoStorage(),
-        produto: produto,
-        qtdProdutos: getArrayStorage('itensCarrinho').length+1,// ver se precisa
-        formaPagamento: isBoleto ? 'Boleto' : isCartao ? 'Cartão' : 'Pix',
-        numeroParcelas: numeroParcelas,
-        valorTotal: parseFloat(document.getElementById('total').innerHTML).toFixed(2),
-        frete: isSedex ? 'SEDEX' : 'PAC',
-        valorFrete: isSedex ? 20.00 : 5.00
-    }
 
-    return itemCarrinho;
-    // setArrayStorage('compraPaginaInterna',compra);
-    // $('#modalFinalizaCompra').modal('hide');
-    // addMensagem({
-    //     messageType: 'alert-success',
-    //     message: 'Compra salva com sucesso !',
-    //     time: 5000,
-    // });
-    // forma do carrinho
-    // const titulo = document.getElementById('titulo' + numElement);
-    // const srcImagem = document.getElementById('img' + numElement);// ver categoria
-    // const descricao = document.getElementById('descricao' + numElement);
-    // const preco = document.getElementById('preco' + numElement);
-    // const produto = {
-    //     titulo: titulo.innerHTML,
-    //     srcImagem: srcImagem.getAttribute('src'),
-    //     descricao: descricao.innerHTML,
-    //     preco: preco.innerHTML,
-    //     quantidade: 1
-    // }
-    // return produto;
+    return produto;
+}
+
+function calcularFrete() {
+    const isSedex = document.getElementById('sedex').checked;
+    document.getElementById('valorFrete').innerHTML = isSedex ? 'Valor de envio: R$ 20.00' : 'Valor de envio: R$ 5.00';
+    document.getElementById('precoFrete').innerHTML = isSedex ? '20.00':'5.00';
+    calculaTotal();
+}
+
+function calculaTotal() {
+    const quantidade = document.getElementById('quantidade').value;
+    const isBoleto = document.getElementById('boleto').checked;
+    const isSedex = document.getElementById('sedex').checked;
+    const valorEnvio = isSedex ? 20 : 5
+    const valorUnit = isBoleto ? calcularValorBoleto() : document.getElementById('preco').innerHTML;
+
+    let valorTotal = (valorUnit * quantidade)+ valorEnvio;
+
+    document.getElementById('total').innerHTML = valorTotal.toFixed(2);
 }
 
 function addMensagem({messageType,message, time, callback=null,classe=null}){
@@ -223,12 +210,6 @@ function addMensagem({messageType,message, time, callback=null,classe=null}){
     }
 }
 
-function calcularFrete() {
-    const isSedex = document.getElementById('sedex').checked;
-    document.getElementById('valorFrete').innerHTML = isSedex ? 'Valor de envio: R$ 20.00' : 'Valor de envio: R$ 5.00';
-    document.getElementById('precoFrete').innerHTML = isSedex ? '20.00':'5.00';
-    calculaTotal();
-}
 
 
 
