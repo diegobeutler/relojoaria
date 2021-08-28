@@ -1,11 +1,13 @@
 package br.edu.utfpr.trabalhoFinalWeb.model;
 
+import br.edu.utfpr.trabalhoFinalWeb.enumeration.FormaEnvio;
 import br.edu.utfpr.trabalhoFinalWeb.enumeration.TipoPagamento;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "PEDIDO")
@@ -32,7 +34,19 @@ public class Pedido {
     @Column(name = "TIPO_PAGAMENTO", length = 15)
     private TipoPagamento tipoPagamento;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "FORMA_ENVIO", length = 15)
+    private FormaEnvio formaEnvio;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<PedidoItem> pedidoItens;
+
+    private Integer numeroParcelas;
+
+    private Double getValorTotal() {
+        return pedidoItens.stream()
+                .map(pedidoItem -> pedidoItem.getValorUnitario() * pedidoItem.getQuantidade())
+                .collect(Collectors.summingDouble(Double::doubleValue));
+    }
 
 }

@@ -6,6 +6,9 @@ import br.edu.utfpr.trabalhoFinalWeb.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Service
 public class PedidoServiceImpl extends CrudServiceImpl<Pedido, Long> implements PedidoService {
 
@@ -21,4 +24,8 @@ public class PedidoServiceImpl extends CrudServiceImpl<Pedido, Long> implements 
         return super.save(entity);
     }
 
+    @Override
+    public List<Pedido> findAllByUsuarioId(Long id) {
+        return pedidoRepository.findAllByUsuarioId(id);
+    }
 }

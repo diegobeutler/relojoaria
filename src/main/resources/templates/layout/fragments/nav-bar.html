@@ -24,7 +24,7 @@
                 <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Buscar</button>
             </form>
         </div>
-        <span> <i class="fa fa-user"></i>
+        <span sec:authorize="isAuthenticated()"> <i class="fa fa-user"></i>
 					Olá <span sec:authentication="name"></span>!
 				</span>
         <a th:href="@{/logout}" class="btn btn-outline-dark">

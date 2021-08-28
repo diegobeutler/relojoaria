@@ -87,9 +87,9 @@ public class UsuarioController {
         Usuario usuario = securityUserService.getUserByPasswordResetToken(passwordDto.getToken());
         if (usuario != null) {
             usuarioService.changeUserPassword(usuario, passwordDto.getNewPassword());
-            return "redirect:usuario/reset";
-        } else {
             return "redirect:/login";
+        } else {
+            return "redirect:/usuario/reset";
         }
     }
 
@@ -107,7 +107,7 @@ public class UsuarioController {
             return "redirect:/login";
         } else {
             model.addAttribute("token", token);
-            return "redirect:/usuario/updatePassword";
+            return "usuario/updatePassword";
         }
     }
 

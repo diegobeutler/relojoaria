@@ -24,10 +24,6 @@ function initPage() {
 
 }
 
-// $(document).ready(() => {
-//
-// });
-
 function novoLi(itemCarrinho) {
 	liProduto = document.createElement('li');
 	let imgProduto = document.createElement('img');

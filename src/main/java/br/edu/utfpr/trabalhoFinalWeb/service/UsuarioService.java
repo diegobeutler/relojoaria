@@ -7,4 +7,7 @@ public interface UsuarioService extends CrudService<Usuario, Long>{
     void createPasswordResetTokenForUser(Usuario usuario, String token);
 
     void changeUserPassword(Usuario usuario, String newPassword);
+
+    Usuario getUsuarioLogado();
+
 }

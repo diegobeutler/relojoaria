@@ -1,8 +1,10 @@
 package br.edu.utfpr.trabalhoFinalWeb.controller;
 
 import br.edu.utfpr.trabalhoFinalWeb.model.Pedido;
+import br.edu.utfpr.trabalhoFinalWeb.model.Usuario;
 import br.edu.utfpr.trabalhoFinalWeb.repository.UsuarioRepository;
 import br.edu.utfpr.trabalhoFinalWeb.service.PedidoService;
+import br.edu.utfpr.trabalhoFinalWeb.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,9 +30,12 @@ public class PedidoController {
     private PedidoService pedidoService;
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    private UsuarioService usuarioService;
 
     @GetMapping("")
-    private String pedido(){
+    private String pedido(Model model){
+        model.addAttribute("usuario", usuarioService.getUsuarioLogado());
         return "pedido";
     }
 
@@ -43,19 +48,9 @@ public class PedidoController {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
 
-            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-            String nome;
-
-            if (principal instanceof UserDetails) {
-                nome = ((UserDetails)principal).getUsername();
-            } else {
-                nome = principal.toString();
-            }
-
-            pedido.setUsuario(usuarioRepository.findByUsername(nome));
+            Usuario usuario = usuarioService.getUsuarioLogado();
+            pedido.setUsuario(usuarioRepository.findByUsername(usuario.getUsername()));
             pedido.setDataPedido(LocalDate.now());
-//            pedido.setFornecedor(fornecedorService.findOne(pedido.getFornecedor().getId()));
             pedido.getPedidoItens().forEach(pi -> pi.setPedido(pedido));
 
             pedidoService.save(pedido);
@@ -65,6 +60,13 @@ public class PedidoController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
         }
+    }
+
+    @GetMapping("list")
+    private String list(Model model){
+        Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("list", pedidoService.findAllByUsuarioId(usuario.getId()));
+        return "pedido-list";
     }
 
 

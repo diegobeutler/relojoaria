@@ -8,16 +8,20 @@ let elementExcluir;
 var totalLabel;
 
 window.onload = initPage;
+
 function initPage() {
-    arrayCarrinho = getArrayStorage('itensCarrinho');
-    arrayCarrinho.forEach((itemCarrinho) => {
-        novoLi(itemCarrinho);
-    });
+    adicionaListaItens();
 }
 
 // $(document).ready(() => {
 //
 // });
+function adicionaListaItens() {
+    arrayCarrinho = getArrayStorage('itensCarrinho');
+    arrayCarrinho.forEach((itemCarrinho) => {
+        novoLi(itemCarrinho);
+    });
+}
 
 function novoLi(itemCarrinho) {
     liProduto = document.createElement('li');
@@ -70,7 +74,7 @@ function novoLi(itemCarrinho) {
         arrayCarrinho[index].quantidade++;
         setArrayStorage('itensCarrinho', arrayCarrinho);
         lbQuantidade.textContent = parseInt(lbQuantidade.textContent) + 1;
-        setTotal(somar(itemCarrinho.preco,totalLabel.textContent));
+        setTotal(somar(itemCarrinho.preco, totalLabel.textContent));
 
     })
 
@@ -98,7 +102,7 @@ function novoLi(itemCarrinho) {
     })
     let preco = Number(itemCarrinho.preco) * itemCarrinho.quantidade;
     subtotal += preco;
-     setTotal(subtotal);
+    setTotal(subtotal);
 }
 
 function novoBotao(elemento, classe) {
@@ -110,24 +114,6 @@ function novoBotao(elemento, classe) {
     componente.style.paddingLeft = '5px';
 
     return componente;
-}
-
-function somar(num1, num2) {
-    const val1 = num1||0;
-    const val2 = num2||0;
-    return Number(val1) + Number(val2);
-}
-
-function subtrair(num1, num2) {
-    const val1 = num1||0;
-    const val2 = num2||0;
-    return Number(val1) - Number(val2);
-}
-
-function multiplicar(num1, num2) {
-    const val1 = num1||0;
-    const val2 = num2||0;
-    return Number(val1) * Number(val2);
 }
 
 function confirmaExclusao() {
@@ -160,14 +146,6 @@ function setTotal(valor) {
     $('#total').text(Number(calculaValorTotalPedido()).toFixed(2));
 }
 
-function calculaValorTotalPedido() {
-    const isBoleto = document.getElementById('boleto').checked;
-    const isSedex = document.getElementById('sedex').checked;
-    let valorTotal = isBoleto ? document.getElementById('totalDescontoBoleto').innerHTML : parseFloat(document.getElementById('totalResumo').innerHTML);
-    valorTotal = somar(isSedex ? 20 : 5, valorTotal);
-    return valorTotal;
-}
-
 function changeValorTotal() {
     $('#total').text(Number(calculaValorTotalPedido()).toFixed(2));
 }
@@ -178,22 +156,15 @@ function valorParcela() {
 }
 
 function finalizarCarrinho() {
-    if(getUsuarioLogadoStorage()){
-        const isBoleto = document.getElementById('boleto').checked;
-        const isCartao = document.getElementById('cartao').checked;
-        const numeroParcelas = document.getElementById('qtdParcela').value;
-        const isSedex = document.getElementById('sedex').checked;
-        let txtValorTotal;
-        txtValorTotal = numeroParcelas + ' de ' + (calculaValorTotalPedido() / numeroParcelas).toFixed(2) + ' sem juros.'
-
-        $('#numProdutosPedido').text(getArrayStorage('itensCarrinho').length);
-        $('#formaPagamentoPedido').text(isBoleto ? 'Boleto' : isCartao ? 'Cartão' : 'Pix');
-        $('#valorTotalPedido').text(txtValorTotal);
-        $('#tipoFretePedido').text(isSedex ? 'SEDEX' : 'PAC');
-        $('#modalFinalizaPedido').modal();
-
-    } else{
-        showMessageAuthentication();
+    if (arrayCarrinho.length) {
+        salvarPedido();
+        window.location = "/pedido"
+    } else {
+        addMensagem({
+            messageType: 'alert-info',
+            message: 'Não há itens no carrinho',
+            time: 5000,
+        });
     }
 }
 
@@ -203,25 +174,14 @@ function salvarPedido() {
     const numeroParcelas = document.getElementById('qtdParcela').value;
     const isSedex = document.getElementById('sedex').checked;
     let pedido = {
-        codigo: $('#codPedido').text(),
-        // usuario: getUsuarioLogadoStorage(),
-        produtos: getArrayStorage('itensCarrinho'),
-        qtdProdutos: getArrayStorage('itensCarrinho').length,
-        formaPagamento: isBoleto ? 'Boleto' : isCartao ? 'Cartão' : 'Pix',
+        itensCarrinho: getArrayStorage('itensCarrinho'),
+        tipoPagamento: isBoleto ? 'BOLETO' : isCartao ? 'CARTAO' : 'PIX',
         numeroParcelas: numeroParcelas,
-        valorTotal: calculaValorTotalPedido(),
-        Frete: isSedex ? 'SEDEX' : 'PAC',
-        valorFrete: isSedex ? 20 : 5
-
+        formaEnvio: isSedex ? 'SEDEX' : 'PAC',
     }
-   setArrayStorage('pedido',pedido);
-    $('#modalFinalizaPedido').modal('hide');
-    addMensagem({
-        messageType: 'alert-success',
-        message: 'Pedido salvo com sucesso !',
-        time: 5000,
-    });
+    setArrayStorage('pedido', pedido);
 }
+
 function cancelarPedido() {
     addMensagem({
         messageType: 'alert-info',
@@ -232,9 +192,25 @@ function cancelarPedido() {
 
 function calcularFretePedido() {
     const isSedex = document.getElementById('sedex').checked;
-    document.getElementById('precoFrete').innerHTML = isSedex ? '20.00':'5.00';
+    document.getElementById('precoFrete').innerHTML = isSedex ? '20.00' : '5.00';
     document.getElementById('valorFreteModal').innerHTML = isSedex ? 'Valor de envio: R$ 20.00' : 'Valor de envio: R$ 5.00';
     changeValorTotal();
+}
+
+function limpaCarrinho() {
+    arrayCarrinho = new Array();
+    setArrayStorage('itensCarrinho', arrayCarrinho);
+    setNumeroProdutos(0);
+    $("#lista").empty();
+    setTotal(0);
+}
+
+function calculaValorTotalPedido() {
+    const isBoleto = document.getElementById('boleto').checked;
+    const isSedex = document.getElementById('sedex').checked;
+    let valorTotal = isBoleto ? document.getElementById('totalDescontoBoleto').innerHTML : parseFloat(document.getElementById('totalResumo').innerHTML);
+    valorTotal = somar(isSedex ? 20 : 5, valorTotal);
+    return valorTotal;
 }
 
 //

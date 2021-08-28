@@ -192,6 +192,25 @@ function calculaTotal() {
     document.getElementById('total').innerHTML = valorTotal.toFixed(2);
 }
 
+
+function somar(num1, num2) {
+    const val1 = num1||0;
+    const val2 = num2||0;
+    return Number(val1) + Number(val2);
+}
+
+function subtrair(num1, num2) {
+    const val1 = num1||0;
+    const val2 = num2||0;
+    return Number(val1) - Number(val2);
+}
+
+function multiplicar(num1, num2) {
+    const val1 = num1||0;
+    const val2 = num2||0;
+    return Number(val1) * Number(val2);
+}
+
 function addMensagem({messageType,message, time, callback=null,classe=null}){
     var callback = callback || function (){};
     const alert = document.getElementById('msg');
