@@ -37,12 +37,11 @@
             <h3 class="text-center">Resumo do Pedido</h3>
 
             <ul class="list-group list-group-flush">
-<!--                <li class="list-group-item text-center cod-card border-0">Cód Pedido: <label id="codPedido">7928</label>-->
-<!--                </li>-->
+                <li class="list-group-item text-center cod-card border-0">Cód Pedido: <label th:text="${pedido.idPedido}"></label></li>
                 <li class="list-group-item border-0">Cliente: <label th:text="${usuario.nome}"> </label></li>
-                <li class="list-group-item border-0">Forma Envio: <span id="formaEnvio"></span></li>
+                <li class="list-group-item border-0">Forma Envio: <span th:text="${pedido.formaEnvio}"></span></li>
                 <li class="list-group-item border-0">Frete: R$ <label id="precoFrete">20.00</label></li>
-                <li class="list-group-item border-0">Total: <span id="total">0.00</span></li>
+                <li class="list-group-item border-0">Total: <span th:text="${pedido.valorTotal}">0.00</span></li>
                 <li class="list-group-item border-0">Numero Parcelas: <span id="numeroParcelas">1</span>
                 </li>
                 <li class="list-group-item  border-0">Forma de pagamento:
@@ -50,12 +49,40 @@
                 </li>
             </ul>
             <div class="card-footer card-footer-carrinho">
-                <button type="button" class="btn btn-success w-100"
-                        onclick="finalizarCompra()">Salvar Pedido
-                </button>
+                <a th:href="@{/pedido/list}">
+                    <button type="button" class="btn btn-success w-100">Voltar para listagem de pedidos</button>
+                </a>
             </div>
         </div>
     </div>
+
+
+    <!--MODAL Confirmar exclusão-->
+    <div id="excluir" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Exclusão <i class="fa fa-exclamation-triangle"></i></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                            onclick="cancelaExclusao()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Tem certeza que deseja excluir o produto do carrinho ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="confirmaExclusao()">
+                        Excluir
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            onclick="cancelaExclusao()">Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal 1-->
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

@@ -9,11 +9,11 @@ function resetPass(){
         data : email,
         success: function() {
             Swal.fire({
-                title: 'Salvo!',
-                text: 'Registro salvo com sucesso!',
+                title: 'Enviado!',
+                text: 'E-mail enviado com sucesso!',
                 type: 'success'
             }).then((result) => {
-                    window.location = urlDestino;
+                    window.location = '/';
                 }
             );//FIM swal()
         },

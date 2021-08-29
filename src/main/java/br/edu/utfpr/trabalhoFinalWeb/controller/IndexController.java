@@ -33,5 +33,12 @@ public class IndexController {
 		model.addAttribute("itens", itemRepository.findByCategoriaItem(CategoriaItemEnum.ANEIS));
 		return "index";
 	}
+
+	@GetMapping("/buscar")
+	public String buscar(Model model) {
+		model.addAttribute("itens", itemRepository.findByCategoriaItem(CategoriaItemEnum.ANEIS));
+		return "index";
+	}
+
 	
 }

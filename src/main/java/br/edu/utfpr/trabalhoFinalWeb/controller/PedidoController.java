@@ -13,10 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Security;
@@ -64,10 +61,17 @@ public class PedidoController {
 
     @GetMapping("list")
     private String list(Model model){
-        Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("list", pedidoService.findAllByUsuarioId(usuario.getId()));
+        Usuario usuario =  usuarioService.getUsuarioLogado();
+        model.addAttribute("pedidos", pedidoService.findAllByUsuarioId(usuario.getId()));
+        model.addAttribute("usuario", usuario);
         return "pedido-list";
     }
 
+    @GetMapping("{id}")
+    private String form(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("pedido", pedidoService.findOne(id));
+        model.addAttribute("usuario", usuarioService.getUsuarioLogado());
+        return "pedido-form";
+    }
 
 }

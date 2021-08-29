@@ -51,8 +51,8 @@ public class SecurityUserServiceImpl extends CrudServiceImpl<PasswordResetToken,
     public SimpleMailMessage constructResetTokenEmail(
             String contextPath, String token, Usuario usuario) {
         String url = contextPath + "/changePassword?token=" + token;
-        String message = "reset password";
-        return constructEmail("Reset Password", message + " \r\n" + url, usuario);
+        String message = "Olá,\nPara alterar a sua senha, basta acessar o link e inserir a nova senha: \n";
+        return constructEmail("Alteração de senha Relojoaria Hora Certa", message + url, usuario);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class SecurityUserServiceImpl extends CrudServiceImpl<PasswordResetToken,
         email.setSubject(subject);
         email.setText(body);
         email.setTo(usuario.getUsername());
-        email.setFrom("programacaodesktop2021@gmail.com");
+        email.setFrom("relojoariahoracerta.gerencia@gmail.com");
         return email;
     }
 

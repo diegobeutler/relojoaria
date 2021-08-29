@@ -3,6 +3,10 @@
         justify-content: center !important;
         margin-left:18%!important;
     }
+    .logout {
+       text-align: center !important;
+        padding-top: 5px;
+    }
     .my-navbar {
         display: flex;
         justify-content: start;

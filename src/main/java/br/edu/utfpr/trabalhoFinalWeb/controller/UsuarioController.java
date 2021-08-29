@@ -76,18 +76,18 @@ public class UsuarioController {
     }
 
     @PostMapping("savePassword")
-    public String savePassword(final Locale locale, PasswordDto passwordDto) {
+    public String savePassword(final Locale locale, PasswordDto passwordDto, Model model) {
 
         String result = securityUserService.validatePasswordResetToken(passwordDto.getToken());
 
         if (result != null) {
             return "redirect:usuario/reset";
         }
-
         Usuario usuario = securityUserService.getUserByPasswordResetToken(passwordDto.getToken());
         if (usuario != null) {
             usuarioService.changeUserPassword(usuario, passwordDto.getNewPassword());
-            return "redirect:/login";
+            model.addAttribute("mensagem", "Senha atualizada com sucesso");
+            return "login";
         } else {
             return "redirect:/usuario/reset";
         }
@@ -97,7 +97,6 @@ public class UsuarioController {
     private String reset() {
         return "usuario/reset";
     }
-
 
     @GetMapping("changePassword")
     public String showChangePasswordPage(Locale locale, Model model,

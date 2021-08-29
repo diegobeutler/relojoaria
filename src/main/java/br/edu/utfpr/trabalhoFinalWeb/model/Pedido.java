@@ -6,6 +6,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,10 +44,18 @@ public class Pedido {
 
     private Integer numeroParcelas;
 
-    private Double getValorTotal() {
-        return pedidoItens.stream()
+    @Transient
+    private Double valorTotal;
+
+    public Double getValorTotal() {
+        Double valorTotal =  pedidoItens.stream()
                 .map(pedidoItem -> pedidoItem.getValorUnitario() * pedidoItem.getQuantidade())
                 .collect(Collectors.summingDouble(Double::doubleValue));
+        return tipoPagamento == TipoPagamento.BOLETO ? valorTotal * .85 : valorTotal;
     }
 
+    public String getDataPedido() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return dataPedido.format(formatter);
+    }
 }

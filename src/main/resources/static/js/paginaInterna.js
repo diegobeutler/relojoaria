@@ -1,9 +1,10 @@
 window.onload = initPage;
 var hasItemCarrinho;
 var indexItem;
+
 function initPage() {
     const idItem = document.getElementById('idItem').innerHTML;
-    const arrayCarrinho =  getArrayStorage('itensCarrinho');
+    const arrayCarrinho = getArrayStorage('itensCarrinho');
     indexItem = arrayCarrinho.findIndex(item => item.idItem == idItem);
 
     if (indexItem != -1) {
@@ -33,27 +34,26 @@ function valorParcela() {
 }
 
 function setarDadosModal() {
-    if (hasItemCarrinho){
+    if (hasItemCarrinho) {
         $('#btAdicionarModal').text("Atualizar");
         $('#tituloModal').text("Atualizar Item");
-    }
-    else{
+    } else {
         $('#btAdicionarModal').text("Adicionar");
         $('#tituloModal').text("Adicionar ao Carrinho");
     }
-    $('#quantidadeModal').text( $('#quantidade').val());
+    $('#quantidadeModal').text($('#quantidade').val());
 
 }
 
 function cancelarAddItemCarrinho() {
     addMensagem({
         messageType: 'alert-info',
-        message:  hasItemCarrinho ? 'Atenção item não Atualizado !' : 'Atenção item não adicionado !' ,
+        message: hasItemCarrinho ? 'Atenção item não Atualizado !' : 'Atenção item não adicionado !',
         time: 5000,
     });
 }
 
-function calcularValorBoleto(){
+function calcularValorBoleto() {
     return (document.getElementById('preco').innerHTML / 100 * 85).toFixed(2);
 }
 

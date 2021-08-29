@@ -108,6 +108,8 @@ function finalizarCompra() {
 				text: 'Registro salvo com sucesso!',
 				type: 'success'
 			}).then((result) => {
+				setArrayStorage('itensCarrinho',  new Array());
+				setNumeroProdutos(0);
 				window.location = '/pedido/list';
 				}
 			);//FIM swal()

@@ -211,6 +211,24 @@ function multiplicar(num1, num2) {
     return Number(val1) * Number(val2);
 }
 
+function buscar() {
+    var query = $("#query").val();
+
+    $.ajax({
+        type: $('#buscarNav').attr('method'),
+        url: $('#buscarNav').attr('action'),
+        contentType : 'application/json',
+        data : query,
+        success: function() {
+          addMensagem({messageType: 'alert-success', message: 'Busca realizada com sucesso !', time: 3000})
+        },
+        error: function(data) {
+            addMensagem({messageType: 'alert-danger', message: 'Erro na busca !', time: 3000})
+        }
+    }); //FIM ajax()
+    return false;
+}
+
 function addMensagem({messageType,message, time, callback=null,classe=null}){
     var callback = callback || function (){};
     const alert = document.getElementById('msg');

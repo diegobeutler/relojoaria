@@ -33,12 +33,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			.logoutSuccessUrl("/login")
 			.and().authorizeRequests()
 				.antMatchers("/pedidos/**").hasAnyRole("USER", "ADMIN")
-				.antMatchers("/pedido/**").hasAnyRole("USER", "ADMIN")//tela de finalizar pedido no carrinho
 				.antMatchers("/usuario/cadastro/**").permitAll()
+				.antMatchers("/usuario/reset/**").permitAll()
 				.antMatchers("/usuario/changePassword/**").permitAll()
 				.antMatchers("/usuario/updatePassword/**").permitAll()
 				.antMatchers("/usuario/savePassword/**").permitAll()
-				.antMatchers("/usuario/reset/**").permitAll()
 				.antMatchers(HttpMethod.GET,"/").permitAll()
 				.antMatchers(HttpMethod.GET,"/index").permitAll()
 				.antMatchers(HttpMethod.GET,"/aneis").permitAll()
