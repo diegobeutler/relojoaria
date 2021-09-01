@@ -1,9 +1,7 @@
-// const btAdicionar = document.querySelector("#btAdicionar");
 let itensCarrinho = [];
 let pedidoStorage;
 let precoFrete;
 let liProduto;
-let lista = document.querySelector('#lista');
 let subtotal = 0;
 var totalLabel;
 
@@ -112,57 +110,7 @@ function finalizarCompra() {
 			console.log(data);
 			Swal.fire('Errou!', 'Falha ao salvar registro!', 'error');
 		}
-	}); //FIM ajax()
+	});
 	return false;
 }
-
-
-
-
-
-
-///professor
-let compraProdutos = [];
-
-function adicionarProduto() {
-	let compraProduto = new Object();
-	compraProduto.id = new Object();
-	compraProduto.id.produto = new Object();
-
-	compraProduto.id.produto.id = $('#produto').val();
-	compraProduto.id.produto.nome = $('#produto').find(':selected').text().split('|')[0];
-	compraProduto.valor = $('#produto').find(':selected').data('valor') // $('#produto').attr('data-valor');
-	compraProduto.quantidade = $('#quantidade').val();
-	compraProdutos.push(compraProduto);
-
-	adicionarLinhaCarrinho( criarLinha(compraProduto) );
-}
-
-function removerProduto() {
-	// TO-DO
-}
-
-function criarLinha(compraProduto) {
-	return $('<tr />')
-		.attr('id', "${compraProduto.id.produto.id}")
-		.append($('<td />').html("<span>" + compraProduto.id.produto.nome + "</span>"))
-		.append($('<td />').html("<span>" + compraProduto.quantidade + "</span>"))
-		.append($('<td />').html("<span>" + new Intl.NumberFormat('pt-BR',{ style: 'currency', currency: 'BRL'}).format(compraProduto.valor) + "</span>"))
-		.append($('<td />').html("<span>" + new Intl.NumberFormat('pt-BR',{ style: 'currency', currency: 'BRL'}).format(compraProduto.valor * compraProduto.quantidade) + "</span>"))
-		.append($('<td />').html("<a href='#'><i className='fa fa-trash ml-2' title='Remover produto' data-toggle='tooltip'></i></a>"));
-}
-
-function adicionarLinhaCarrinho(linha) {
-	if ($('#tbCompraProdutos tbody') == 0)
-		$('#tbCompraProdutos').append('<tbody> </tbody>');
-
-	$('#tbCompraProdutos tbody').append(linha);
-}
-
-
-// Salvar as pedidos
-$('#frm').submit(function (e) {
-
-});
-
 

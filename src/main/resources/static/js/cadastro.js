@@ -8,24 +8,20 @@ btnCadastrar.addEventListener('click', (e) => {
 function setUsuario() {
     let usuario = getUsuarioForm('#formCadastroUsuario');
     let erros = validarUsuario(usuario);
-    if (erros.length > 0) {
-        addMensagem({messageType:'alert-danger',message:'Usuário não salvo, possui erros no preenchimento dos campos',time: 6000});
-        exibirMsgErro(erros);
+    if (erros != "") {
+        addMensagem({messageType:'alert-danger',message:'Usuário não salvo, pois possui os erros: ' +erros,time: 6000});
     } else {
-        let ul = document.querySelector('#listaErros');
-        ul.innerHTML = '';
-        addUsuario(usuario);
-        setUsuarioLogadoStorage(usuario);
+        $('#formCadastroUsuario').submit();
         setStorage('isLogin', true);
-        window.location.href = window.location.href.replace('cadastroUsuario', 'index');
+        window.location.href = window.location.href.replace('/usuario/cadastro', '/login');
     }
 }
 
-function addUsuario(usuario) {
-    let usuarios = getArrayStorage('usuarios');
-    usuarios.push(usuario);
-    setArrayStorage('usuarios', usuarios);
-}
+// function addUsuario(usuario) {
+//     let usuarios = getArrayStorage('usuarios');
+//     usuarios.push(usuario);
+//     setArrayStorage('usuarios', usuarios);
+// }
 $(() => {
     $('#cep').mask("99999-999", {placeholder: " "});
 })

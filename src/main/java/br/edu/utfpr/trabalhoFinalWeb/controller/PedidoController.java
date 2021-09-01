@@ -46,7 +46,8 @@ public class PedidoController {
             }
 
             Usuario usuario = usuarioService.getUsuarioLogado();
-            pedido.setUsuario(usuarioRepository.findByUsername(usuario.getUsername()));
+            pedido.setUsuario(usuario);
+//            pedido.setUsuario(usuarioRepository.findByUsername(usuario.getUsername()));
             pedido.setDataPedido(LocalDate.now());
             pedido.getPedidoItens().forEach(pi -> pi.setPedido(pedido));
 

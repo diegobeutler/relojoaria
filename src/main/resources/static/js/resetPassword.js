@@ -1,4 +1,3 @@
-
 function resetPass(){
     var email = $("#email").val();
 

@@ -5,6 +5,7 @@ import br.edu.utfpr.trabalhoFinalWeb.enumeration.TipoPagamento;
 import lombok.*;
 
 import javax.persistence.*;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -47,11 +48,12 @@ public class Pedido {
     @Transient
     private Double valorTotal;
 
-    public Double getValorTotal() {
+    public String getValorTotal() {
+        DecimalFormat df = new DecimalFormat("#,###.00");
         Double valorTotal =  pedidoItens.stream()
                 .map(pedidoItem -> pedidoItem.getValorUnitario() * pedidoItem.getQuantidade())
                 .collect(Collectors.summingDouble(Double::doubleValue));
-        return tipoPagamento == TipoPagamento.BOLETO ? valorTotal * .85 : valorTotal;
+        return  df.format(tipoPagamento == TipoPagamento.BOLETO ? valorTotal * .85 : valorTotal);
     }
 
     public String getDataPedido() {

@@ -10,4 +10,6 @@ import java.util.List;
 public interface ItemRepository extends JpaRepository<Item, Long> {
 
     List<Item> findByCategoriaItem(CategoriaItemEnum categoriaItemEnum);
+
+    List<Item> findByNomeContainingIgnoreCase(String query);
 }

@@ -1,0 +1,148 @@
+#tbCompraProdutos tr {
+
+}
+
+#tbCompraProdutos th {
+    background-color: #47494b;
+    color: #ffffff;
+    border-collapse: collapse;
+    border: 1px solid #868e96;
+}
+
+#tbCompraProdutos td {
+    background-color: #edeeef;
+    color: #181818;
+    border-collapse: collapse;
+    border: 1px solid #868e96;
+}
+
+.title {
+    background: none;
+    color: #ffffff;
+}
+
+.my-card {
+    background: #868e96;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.my-card-header {
+    background: #767c81;
+    margin: 0;
+    padding: 0.75rem 1rem;
+}
+
+.title-categoria {
+    color: #d6dce2 !important;
+}
+
+.preco-antigo {
+    border-radius: 5px;
+    color: #000000;
+}
+
+.preco {
+    font-family: "Californian FB" !important;
+    font-weight: bold;
+    font-size: 20pt !important;
+}
+
+.img-forma-pagamento {
+    max-width: 100%;
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.adquirir {
+    color: #fff !important;
+    width: 100%;
+}
+
+/*Carousel*/
+.espacamento-carousel {
+    margin-top: 85px;
+}
+
+.informacoes-img1 {
+    position: absolute;
+    margin-top: 5%;
+    margin-left: 20%;
+    font-family: DM;
+    font-size: 16pt !important;
+    max-width: 520px;
+    color: #494848;
+}
+
+.informacoes-img1 h1 {
+    font-weight: 800;
+    font-size: 40pt !important;
+}
+
+.informacoes-img1 a {
+    color: #494848;
+    border-color: #494848;
+}
+
+.informacoes-img1 a:hover {
+    border-color: #494848 !important;;
+    color: #494848 !important;;
+    background: none !important;
+}
+
+.informacoes-img1 a:focus {
+    border-color: #494848 !important;
+    color: #494848 !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+
+.informacoes-img2 {
+    position: absolute;
+    margin-top: 5%;
+    margin-left: 25%;
+    font-family: DM;
+    font-size: 16pt !important;
+    max-width: 520px;
+    color: #fff;
+}
+
+.informacoes-img2 h1 {
+    font-weight: 800;
+    font-size: 40pt !important;
+}
+
+.informacoes-img2 a {
+    color: #fff;
+    border-color: #fff;
+}
+
+.informacoes-img2 a:hover {
+    border-color: #fff;
+    background: none !important;
+}
+
+.informacoes-img2 a:focus {
+    border-color: #fff !important;
+    color: #fff !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+
+.informacoes-img3 {
+    position: absolute;
+    margin-top: 20%;
+    margin-left: 65%;
+    font-family: Merriweather;
+}
+
+.desconto-card{
+    font-weight: bold !important;
+    font-size: 14pt !important;
+}
+
+
+.filtrar{
+    /*float: right;*/
+    /*margin-right: 80px;*/
+}

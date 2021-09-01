@@ -106,10 +106,6 @@ public class Usuario implements Serializable,
 		return true;
 	}
 
-	public void setDataNasc(LocalDate dataNasc) {
-		this.dataNasc = dataNasc;
-	}
-
 	public void setDataNasc(String dataNasc) {
 		this.dataNasc = LocalDate.now();
 	}

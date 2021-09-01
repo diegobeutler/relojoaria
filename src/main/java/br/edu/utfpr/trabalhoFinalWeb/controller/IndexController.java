@@ -6,7 +6,9 @@ import br.edu.utfpr.trabalhoFinalWeb.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class IndexController {
@@ -34,11 +36,10 @@ public class IndexController {
 		return "index";
 	}
 
-	@GetMapping("/buscar")
-	public String buscar(Model model) {
-		model.addAttribute("itens", itemRepository.findByCategoriaItem(CategoriaItemEnum.ANEIS));
+	@PostMapping("/buscar")
+	public String buscar(String query, Model model) {
+		model.addAttribute("itens", itemRepository.findByNomeContainingIgnoreCase(query));
 		return "index";
 	}
-
 	
 }

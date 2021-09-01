@@ -57,8 +57,10 @@ public class UsuarioController {
     }
 
     @GetMapping("perfil")
-    private String perfil() {
+    private String perfil(Model model) {
+        model.addAttribute(usuarioService.getUsuarioLogado());
         return "usuario/perfil";
+
     }
 
     @PostMapping("reset")
