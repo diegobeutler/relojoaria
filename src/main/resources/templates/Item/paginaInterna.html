@@ -33,9 +33,11 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item text-center font-weight-bold border-0 cod-card">Cód: <label
                             id="idItem" th:text="${item.idItem}"></label></li>
-                    <li class="list-group-item border-0">Valor: R$ <label id="preco" th:text="${item.valor}"></label></li>
-                    <li class="list-group-item border-0  desconto-card">Desconto de 15% no boleto = R$ <label id="precoBoleto"></label></li>
-                    <li class="list-group-item border-0">Frete:  R$ <label id="precoFrete"></label><br>
+                    <li class="list-group-item border-0">Valor: R$ <label id="preco" th:text="${item.valor}"></label>
+                    </li>
+                    <li class="list-group-item border-0  desconto-card">Desconto de 15% no boleto = R$ <label
+                            id="precoBoleto"></label></li>
+                    <li class="list-group-item border-0">Frete: R$ <label id="precoFrete"></label><br>
                         <a class="small_a" href="#" data-toggle="modal" data-target="#formaEnvio"><small>Ver opções
                             de
                             entrega</small></a></li>
@@ -54,11 +56,13 @@
                             <label class="form-check-label">Boleto</label>
                         </div>
                         <div id="cartao" class="form-check  form-check-inline">
-                            <input class="form-check-input" type="radio" name="forma-pagamento" value="cartao" onchange="calculaTotal()"/>
+                            <input class="form-check-input" type="radio" name="forma-pagamento" value="cartao"
+                                   onchange="calculaTotal()"/>
                             <label class="form-check-label">Cartão</label>
                         </div>
                         <div class="form-check  form-check-inline">
-                            <input class="form-check-input" type="radio" name="forma-pagamento" value="pix" onchange="calculaTotal()"/>
+                            <input class="form-check-input" type="radio" name="forma-pagamento" value="pix"
+                                   onchange="calculaTotal()"/>
                             <label class="form-check-label">Pix</label>
                         </div>
                     </li>
@@ -67,17 +71,18 @@
             <div class="card-footer card-footer-pagina-interna">
                 <button type="button" class="btn btn-success w-100"
                         onclick="setarDadosModal()" data-toggle="modal"
-                        data-target="#modalAdicionarCarrinho"><label id="btAdicionar" class="pr-3 mb-0"> </label><i class="fa fa-cart-plus "></i>
+                        data-target="#modalAdicionarCarrinho"><label id="btAdicionar" class="pr-3 mb-0"> </label><i
+                        class="fa fa-cart-plus "></i>
                 </button>
             </div>
 
-<!--            <div class="card-footer">-->
-<!--                <button th:id="adicionar+${item.idItem}"-->
-<!--                        type="button"-->
-<!--                        class="btn btn-secondary adquirir"-->
-<!--                        onclick="adicionarCarrinho(${item.idItem})">Adicionar <i class="fa fa-cart-plus "></i>-->
-<!--                </button>-->
-<!--            </div>-->
+            <!--            <div class="card-footer">-->
+            <!--                <button th:id="adicionar+${item.idItem}"-->
+            <!--                        type="button"-->
+            <!--                        class="btn btn-secondary adquirir"-->
+            <!--                        onclick="adicionarCarrinho(${item.idItem})">Adicionar <i class="fa fa-cart-plus "></i>-->
+            <!--                </button>-->
+            <!--            </div>-->
         </div>
     </div>
 
@@ -136,7 +141,8 @@
                         <label class="form-check-label">SEDEX</label>
                     </div>
                     <div class="form-check  form-check-inline">
-                        <input id="pac" class="form-check-input" type="radio" name="forma-envio" value="pac" onchange="calcularFrete()"/>
+                        <input id="pac" class="form-check-input" type="radio" name="forma-envio" value="pac"
+                               onchange="calcularFrete()"/>
                         <label class="form-check-label">PAC</label>
                     </div>
 
@@ -186,17 +192,21 @@
                 <div class="modal-body">
                     <div class=" card">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item text-center cod-card border-0">Código do item: <label id="idItemModal"
-                                                                                                             th:text="${item.idItem}"></label></li>
-                            <li class="list-group-item  border-0">Valor Unitário sem desconto: <label id="valorUnitModal" th:text="${item.valor}"></label>
+                            <li class="list-group-item text-center cod-card border-0">Código do item: <label
+                                    id="idItemModal"
+                                    th:text="${item.idItem}"></label></li>
+                            <li class="list-group-item  border-0">Valor Unitário sem desconto: <label
+                                    id="valorUnitModal" th:text="${item.valor}"></label>
                             <li class="list-group-item  border-0">Quantidade: <label
                                     id="quantidadeModal"></label></li>
                         </ul>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary w-100"  data-dismiss="modal" onclick="addItemCarrinho()" id="btAdicionarModal"></button>
-                    <button type="button" class="btn btn-secondary w-100" data-dismiss="modal" onclick="cancelarAddItemCarrinho()">
+                    <button type="button" class="btn btn-primary w-100" data-dismiss="modal" onclick="addItemCarrinho()"
+                            id="btAdicionarModal"></button>
+                    <button type="button" class="btn btn-secondary w-100" data-dismiss="modal"
+                            onclick="cancelarAddItemCarrinho()">
                         Cancelar
                     </button>
                 </div>

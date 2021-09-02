@@ -8,12 +8,12 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class TrabalhoFinalWebApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(TrabalhoFinalWebApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(TrabalhoFinalWebApplication.class, args);
+    }
 
-	@Bean
-	public LayoutDialect layoutDialect() {
-		return new LayoutDialect();
-	}
+    @Bean
+    public LayoutDialect layoutDialect() {
+        return new LayoutDialect();
+    }
 }

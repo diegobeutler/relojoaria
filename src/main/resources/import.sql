@@ -1,14 +1,10 @@
 INSERT INTO permissao (nome) values('ROLE_ADMIN');
 INSERT INTO permissao (nome) values('ROLE_USER');
-INSERT INTO usuario(nome, apelido, username, password, cpf, genero,data_nasc, telefone, cep, rua, bairro, cidade, estado, numero) VALUES ('Administrador','Admin','diegobeutler2411@gmail.com','$2a$10$.PVIfB07x.SfMYTcToxL0.yxcLWU0GbS2NUO1W1QAvqMm/TsFhVem', '12061623985', 'Masculino','2021-01-01','46999991232','34234234','Rua Tapajós', 'centro', 'Pato Branco','PR','231');
---INSERT INTO usuario(nome, username, password) VALUES ('Teste', 'teste','$2a$10$.PVIfB07x.SfMYTcToxL0.yxcLWU0GbS2NUO1W1QAvqMm/TsFhVem');
-
-
+INSERT INTO usuario(nome, apelido, username, password, cpf, genero,data_nasc, telefone, cep, rua, bairro, cidade, estado, numero) VALUES ('Administrador','Admin','teste@teste.com','$2a$10$.PVIfB07x.SfMYTcToxL0.yxcLWU0GbS2NUO1W1QAvqMm/TsFhVem', '12061623985', 'Masculino','2021-01-01','46999991232','34234234','Rua Tapajós', 'centro', 'Pato Branco','PR','231');
 
 
 INSERT INTO usuario_permissoes(usuario_id, permissoes_id) VALUES (1, 1);
--- INSERT INTO usuario_permissoes(usuario_id, permissoes_id) VALUES (1, 2);
--- INSERT INTO usuario_permissoes(usuario_id, permissoes_id) VALUES (2, 2);
+
 
 -- ITENS --
 -- Relógios

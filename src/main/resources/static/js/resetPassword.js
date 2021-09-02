@@ -14,13 +14,13 @@ function resetPass(){
             }).then((result) => {
                     window.location = '/';
                 }
-            );//FIM swal()
+            );
         },
         error: function(data) {
             console.log(data);
             Swal.fire('Errou!', 'Falha ao salvar registro!', 'error');
         }
-    }); //FIM ajax()
+    });
     return false;
 
 }

@@ -10,6 +10,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
 import static java.time.LocalDate.now;
+
 @Service
 public class SecurityUserServiceImpl extends CrudServiceImpl<PasswordResetToken, Long> implements SecurityUserService {
 
@@ -57,7 +58,7 @@ public class SecurityUserServiceImpl extends CrudServiceImpl<PasswordResetToken,
 
     @Override
     public SimpleMailMessage constructEmail(String subject, String body,
-                                             Usuario usuario) {
+                                            Usuario usuario) {
         SimpleMailMessage email = new SimpleMailMessage();
         email.setSubject(subject);
         email.setText(body);

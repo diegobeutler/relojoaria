@@ -12,6 +12,7 @@ public class ItemServiceImp extends CrudServiceImpl<Item, Long> implements ItemS
 
     @Autowired
     private ItemRepository itemRepository;
+
     @Override
     protected JpaRepository<Item, Long> getRepository() {
         return itemRepository;

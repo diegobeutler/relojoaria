@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.NumberFormat;
@@ -37,36 +38,41 @@ public class Usuario implements Serializable,
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(length = 255, nullable = false)
+	@NotNull
 	private String nome;
 
-	@Column(length = 255)
+	@NotNull
 	private String apelido;
 
 	@Column( nullable = false, length = 14)
 	private String cpf;
 
-	@Column( nullable = false)
+	@NotNull
 	private String genero;
 
+	@NotNull
 	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
 	private LocalDate dataNasc;
 
-	//@Column( nullable = false)
+	@NotNull
 	private String telefone;
 
 	@Column( nullable = false, length = 14)
 	private String cep;
 
-	//@Column( nullable = false)
+	@NotNull
 	private String rua;
 
+	@NotNull
 	private String bairro;
 
+	@NotNull
 	private String cidade;
 
+	@NotNull
 	private String estado;
 
+	@NotNull
 	private String numero;
 
 	@Column(length = 100, nullable = false)

@@ -66,7 +66,6 @@ public class UsuarioController {
     @PostMapping("reset")
     public GenericResponse resetPassword(HttpServletRequest request,
                                          @RequestParam("email") String email) {
-
         Usuario usuario = (Usuario) usuarioServiceImpl.loadUserByUsername(email);
         if (usuario == null) {
             throw new UsernameNotFoundException(null);
@@ -78,7 +77,7 @@ public class UsuarioController {
     }
 
     @PostMapping("savePassword")
-    public String savePassword(final Locale locale, PasswordDto passwordDto, Model model) {
+    public String savePassword( PasswordDto passwordDto, Model model) {
 
         String result = securityUserService.validatePasswordResetToken(passwordDto.getToken());
 

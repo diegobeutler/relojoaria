@@ -176,7 +176,6 @@ function calculaTotal() {
     document.getElementById('total').innerHTML = valorTotal.toFixed(2);
 }
 
-
 function somar(num1, num2) {
     const val1 = num1 || 0;
     const val2 = num2 || 0;
@@ -193,25 +192,6 @@ function multiplicar(num1, num2) {
     const val1 = num1 || 0;
     const val2 = num2 || 0;
     return Number(val1) * Number(val2);
-}
-
-function buscar() {
-    var query = $("#query").val().toString();
-    const url = $('#buscarNav').attr('action') + "/" + query + "?";
-
-    $.ajax({
-        type: 'post',
-        url: $('#buscarNav').attr('action'),
-        contentType: 'application/json',
-        data: query.toString(),
-        success: function () {
-            addMensagem({messageType: 'alert-success', message: 'Busca realizada com sucesso !', time: 3000})
-        },
-        error: function (data) {
-            addMensagem({messageType: 'alert-danger', message: 'Erro na busca !', time: 3000})
-        }
-    }); //FIM ajax()
-    return false;
 }
 
 function addMensagem({messageType, message, time, callback = null, classe = null}) {

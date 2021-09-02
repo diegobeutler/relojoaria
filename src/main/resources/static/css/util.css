@@ -6,9 +6,11 @@ body {
     height: 100%;
     width: 100%;
 }
+
 html, body {
     min-height: 100%;
 }
+
 .color-white {
     color: #ffffff;
 }
@@ -40,7 +42,7 @@ html, body {
 
 .card {
     width: 100%;
-    background-color: #a9a9a9!important;
+    background-color: #a9a9a9 !important;
     margin: 0px;
 }
 
@@ -61,7 +63,6 @@ html, body {
 }
 
 .my-img:focus {
-    /*background-color: #e30c0c !important;*/
     border: 5px solid #31fc03 !important;
     margin: 0 !important;
     padding: 0 !important;
@@ -105,15 +106,16 @@ html, body {
 
 .msg-r-t {
     position: fixed;
-    right: 20px!important;
-    top:0!important;
+    right: 20px !important;
+    top: 0 !important;
     margin-right: 20px !important;
     margin-top: 140px !important;
-    max-width:30% !important;
+    max-width: 30% !important;
     z-index: 1000;
 
 }
-.m-t-100{
+
+.m-t-100 {
     margin-top: 100px !important;
 }
 

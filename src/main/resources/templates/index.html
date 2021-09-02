@@ -103,7 +103,8 @@
                              th:alt="${item.nome}"
                         />
                     </a>
-                    <p th:id="descricao+${item.idItem}" class="card-text text-justify mt-1" th:text="${item.descricao}"></p>
+                    <p th:id="descricao+${item.idItem}" class="card-text text-justify mt-1"
+                       th:text="${item.descricao}"></p>
                     <p class="preco-antigo"> De R$<s th:text="${item.valorAnterior}"></s> por R$ <u><strong id="preco1"
                                                                                                             class="preco"
                                                                                                             th:text="${item.valor}"></strong></u>

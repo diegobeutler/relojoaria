@@ -5,6 +5,7 @@ import br.edu.utfpr.trabalhoFinalWeb.enumeration.TipoPagamento;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -33,7 +34,7 @@ public class Pedido {
     private Usuario usuario;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "TIPO_PAGAMENTO", length = 15)
+    @Column(name = "TIPO_PAGAMENTO", length = 15, nullable = false)
     private TipoPagamento tipoPagamento;
 
     @Enumerated(EnumType.STRING)
@@ -43,6 +44,7 @@ public class Pedido {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<PedidoItem> pedidoItens;
 
+    @NotNull
     private Integer numeroParcelas;
 
     @Transient

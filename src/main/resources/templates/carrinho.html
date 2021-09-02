@@ -28,8 +28,9 @@
                     <div>
                         <label class="ml-3">Total da compra: </label>
                         <b><label id="totalListaProdutos"> 0.00</label></b>
-                      <button data-toggle="tooltip" data-placement="bottom" title="Limpar Carrinho" type="button" class="btn btn-outline-dark float-right limpaCarinho"
-                               onclick="limpaCarrinho()"><i class="fa fa-trash-o"> </i> </button>
+                        <button data-toggle="tooltip" data-placement="bottom" title="Limpar Carrinho" type="button"
+                                class="btn btn-outline-dark float-right limpaCarinho"
+                                onclick="limpaCarrinho()"><i class="fa fa-trash-o"> </i></button>
                     </div>
                 </div>
             </div>
@@ -39,12 +40,13 @@
             <h3 class="text-center">Resumo da compra</h3>
 
             <ul class="list-group list-group-flush">
-                <li class="list-group-item text-center cod-card border-0">Cód Pedido: <label id="codPedido">7928</label></li>
+                <li class="list-group-item text-center cod-card border-0">Cód Pedido: <label id="codPedido">7928</label>
+                </li>
                 <li class="list-group-item font-weight-bold  border-0">Valor: R$ <label id="totalResumo">0.00</label>
                 </li>
                 <li class="list-group-item font-weight-bold  border-0">Desconto de 15% no boleto = R$ <label
                         id="totalDescontoBoleto">0.00</label></li>
-                <li class="list-group-item border-0">Frete:  R$ <label id="precoFrete">20.00</label><br>
+                <li class="list-group-item border-0">Frete: R$ <label id="precoFrete">20.00</label><br>
                     <a class="small_a" href="#" data-toggle="modal" data-target="#formaEnvio"><small>Ver opções
                         de
                         entrega</small></a></li>
@@ -57,190 +59,193 @@
                 <li class="list-group-item  border-0">Formas de pagamento:
                     <div class="form-check  form-check-inline ml-2">
                         <input id="boleto" class="form-check-input" type="radio" name="forma-pagamento"
-                               value="boleto" checked  onclick="changeValorTotal()" />
+                               value="boleto" checked onclick="changeValorTotal()"/>
                         <label class="form-check-label">Boleto</label>
                     </div>
                     <div class="form-check  form-check-inline">
-                        <input id="cartao" class="form-check-input" type="radio" name="forma-pagamento" value="cartao"  onclick="changeValorTotal()"/>
+                        <input id="cartao" class="form-check-input" type="radio" name="forma-pagamento" value="cartao"
+                               onclick="changeValorTotal()"/>
                         <label class="form-check-label">Cartão</label>
                     </div>
                     <div class="form-check  form-check-inline">
-                        <input class="form-check-input" type="radio" name="forma-pagamento" value="pix"  onclick="changeValorTotal()"/>
+                        <input class="form-check-input" type="radio" name="forma-pagamento" value="pix"
+                               onclick="changeValorTotal()"/>
                         <label class="form-check-label">Pix</label>
                     </div>
                 </li>
             </ul>
             <div class="card-footer card-footer-carrinho">
 
-              <button  type="button" class="btn btn-success w-100"
+                <button type="button" class="btn btn-success w-100"
                         onclick="finalizarCarrinho()">Finalizar Carrinho
-<!--                    aqui verificar antes se está autenticado -->
                 </button>
             </div>
         </div>
     </div>
 
 
-
-
-
-<!--MODAL Confirmar exclusão-->
-<div id="excluir" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Exclusão <i class="fa fa-exclamation-triangle"></i></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                        onclick="cancelaExclusao()">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Tem certeza que deseja excluir o produto do carrinho ?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="confirmaExclusao()">
-                    Excluir
-                </button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                        onclick="cancelaExclusao()">Cancelar
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal 1-->
-<div class="modal fade" id="modalVerParcelas" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Parcelas</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h5>Selecione o número de parcelas:
-                    <select class="" id="qtdParcela" placeholder="Parcelas" onclick="valorParcela()">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                    </select></h5>
-                <p id="valorParcela"></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal2 -->
-<div class="modal fade" id="modalFinalizaPedido" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-center">
-                <h3 class="text-center p-l-30">Finalizar Pedido</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class=" card">
-
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item text-center cod-card border-0">Cód Pedido: 7928</li>
-                        <li class="list-group-item font-weight-bold  border-0">Número de produtos no carrinho: <label id="numProdutosPedido">0</label>
-                        </li>
-                        <li class="list-group-item  border-0">Forma de envio: <label id="tipoFretePedido"></label>
-                        <li class="list-group-item  border-0">Forma de pagamento:  <label id="formaPagamentoPedido"></label></li>
-                        <li class="list-group-item border-0">Valor total: <span id="valorTotalPedido">0.00</span></li>
-
-                    </ul>
+    <!--MODAL Confirmar exclusão-->
+    <div id="excluir" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Exclusão <i class="fa fa-exclamation-triangle"></i></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                            onclick="cancelaExclusao()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Tem certeza que deseja excluir o produto do carrinho ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="confirmaExclusao()">
+                        Excluir
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            onclick="cancelaExclusao()">Cancelar
+                    </button>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary w-100" onclick="salvarPedido()">Salvar</button>
-                <button type="button" class="btn btn-secondary w-100" data-dismiss="modal" onclick="cancelarPedido()">Cancelar</button>
-            </div>
         </div>
     </div>
-</div>
-
-<!-- Modal3 -->
-<div class="modal fade" id="formaEnvio" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Parcelas</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Formas de envio:<br>
-                <label for="cep">CEP:</label>
-                <input id="cep" type="text" placeholder="xxxxx-xxx"/></li><br>
-                <div class="form-check  form-check-inline ml-2">
-                    <input id="sedex" class="form-check-input" type="radio" name="forma-envio" value="sedex"
-                           checked onclick="calcularFretePedido()"/>
-                    <label class="form-check-label">SEDEX</label>
+    <!-- Modal 1-->
+    <div class="modal fade" id="modalVerParcelas" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Parcelas</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="form-check  form-check-inline">
-                    <input id="pac" class="form-check-input" type="radio" name="forma-envio" value="pac" onclick="calcularFretePedido()"/>
-                    <label class="form-check-label">PAC</label>
+                <div class="modal-body">
+                    <h5>Selecione o número de parcelas:
+                        <select class="" id="qtdParcela" placeholder="Parcelas" onclick="valorParcela()">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select></h5>
+                    <p id="valorParcela"></p>
                 </div>
-
-                <p id="valorFreteModal">Valor de envio: R$ 20.00</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary w-100" data-dismiss="modal">Fechar</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!--    Modal autênticação-->
-<div id="alert" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Usuário não autenticado <i class="fa fa-exclamation-triangle"></i></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                        onclick="voltaTelaInicial('paginaInternaProduto1')">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Para finalizar o seu pedido, você deve antes efetuar o login.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="navegaTelaLogin('carrinho')">
-                    login
-                </button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                        onclick="cancelarPedido()">Cancelar
-                </button>
+    <!-- Modal2 -->
+    <div class="modal fade" id="modalFinalizaPedido" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h3 class="text-center p-l-30">Finalizar Pedido</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class=" card">
+
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item text-center cod-card border-0">Cód Pedido: 7928</li>
+                            <li class="list-group-item font-weight-bold  border-0">Número de produtos no carrinho:
+                                <label id="numProdutosPedido">0</label>
+                            </li>
+                            <li class="list-group-item  border-0">Forma de envio: <label id="tipoFretePedido"></label>
+                            <li class="list-group-item  border-0">Forma de pagamento: <label
+                                    id="formaPagamentoPedido"></label></li>
+                            <li class="list-group-item border-0">Valor total: <span id="valorTotalPedido">0.00</span>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary w-100" onclick="salvarPedido()">Salvar</button>
+                    <button type="button" class="btn btn-secondary w-100" data-dismiss="modal"
+                            onclick="cancelarPedido()">Cancelar
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <!-- Modal3 -->
+    <div class="modal fade" id="formaEnvio" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Parcelas</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Formas de envio:<br>
+                    <label for="cep">CEP:</label>
+                    <input id="cep" type="text" placeholder="xxxxx-xxx"/></li><br>
+                    <div class="form-check  form-check-inline ml-2">
+                        <input id="sedex" class="form-check-input" type="radio" name="forma-envio" value="sedex"
+                               checked onclick="calcularFretePedido()"/>
+                        <label class="form-check-label">SEDEX</label>
+                    </div>
+                    <div class="form-check  form-check-inline">
+                        <input id="pac" class="form-check-input" type="radio" name="forma-envio" value="pac"
+                               onclick="calcularFretePedido()"/>
+                        <label class="form-check-label">PAC</label>
+                    </div>
+
+                    <p id="valorFreteModal">Valor de envio: R$ 20.00</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary w-100" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--    Modal autênticação-->
+    <div id="alert" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Usuário não autenticado <i class="fa fa-exclamation-triangle"></i></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                            onclick="voltaTelaInicial('paginaInternaProduto1')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Para finalizar o seu pedido, você deve antes efetuar o login.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="navegaTelaLogin('carrinho')">
+                        login
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            onclick="cancelarPedido()">Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous"></script>
     <script src="http://ajax.microsoft.com/ajax/jquery.validate/1.7/jquery.validate.js" type="text/javascript"></script>
     <script type="text/javascript" src="js/jquery.maskedinput.js"></script>
-    <!--    <script src="bootstrap4/js/bootstrap.js" type="text/javascript" charset="utf-8" async defer></script>-->
     <script type="text/javascript" th:src="@{/js/carrinho.js}"></script>
     <link rel="stylesheet" th:href="@{/css/index.css}"/>
 </section>

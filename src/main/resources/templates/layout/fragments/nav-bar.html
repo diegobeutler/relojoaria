@@ -3,38 +3,42 @@
       xmlns:th="http://www.thymeleaf.org">
 
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top" th:fragment="navbar">
-        <link rel="stylesheet" th:href="@{/css/navbar.css}"/>
-        <link rel="stylesheet" th:href="@{/css/index.css}"/>
-        <button class="navbar-toggler z-index" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <ul class="navbar-nav mr-auto mt-2 align-items-center">
-                <li class="content-logo"><a class="nav-link mt-1" th:href="@{/}">
-                    <img th:src="@{/images/logo.png}" class=" logo" alt="Logo"/>Relojoaria
-                    Hora Certa</a></li>
-                <li><a class="nav-link text-light ml-2  pr-lg-0 p-xl-2" th:href="@{/login}">Login</a></li>
-                <li><a class="nav-link  text-light  pr-lg-0 p-xl-2" th:href="@{/usuario/cadastro}">Cadastrar-se</a></li>
-                <li><a class="nav-link  text-light   pr-lg-0 p-xl-2" th:href="@{/usuario/perfil}">Seu Perfil</a></li>
-            </ul>
-            <form th:id="buscarNav" th:method="post" th:action="@{/buscar}" class="form-inline buscar">
-                <input th:id="query" th:name="query" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-                <button type="submit" class="btn btn-outline-dark my-2 my-sm-0">Buscar</button>
-            </form>
-            <div  class="logout">
-                <span  class="pr-3" sec:authorize="isAuthenticated()"><i class="fa fa-user pr-3"></i>Olá <span sec:authentication="name"></span>!</span>
-                <a th:href="@{/logout}" class="btn btn-outline-dark pl-3" data-toggle="tooltip" data-placement="bottom" title="Sair">
-                    <i class="fa fa-sign-out"></i>
-                </a>
-            </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top" th:fragment="navbar">
+    <link rel="stylesheet" th:href="@{/css/navbar.css}"/>
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>
+    <button class="navbar-toggler z-index" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <ul class="navbar-nav mr-auto mt-2 align-items-center">
+            <li class="content-logo"><a class="nav-link mt-1" th:href="@{/}">
+                <img th:src="@{/images/logo.png}" class=" logo" alt="Logo"/>Relojoaria
+                Hora Certa</a></li>
+            <li><a class="nav-link text-light ml-2  pr-lg-0 p-xl-2" th:href="@{/login}">Login</a></li>
+            <li><a class="nav-link  text-light  pr-lg-0 p-xl-2" th:href="@{/usuario/cadastro}">Cadastrar-se</a></li>
+            <li><a class="nav-link  text-light   pr-lg-0 p-xl-2" th:href="@{/usuario/perfil}">Seu Perfil</a></li>
+        </ul>
+        <form th:id="buscarNav" th:method="post" th:action="@{/buscar}" class="form-inline buscar">
+            <input th:id="query" th:name="query" class="form-control mr-sm-2" type="search" placeholder="Buscar"
+                   aria-label="Search">
+            <button type="submit" class="btn btn-outline-dark my-2 my-sm-0">Buscar</button>
+        </form>
+        <div class="logout">
+            <span class="pr-3" sec:authorize="isAuthenticated()"><i class="fa fa-user pr-3"></i>Olá <span
+                    sec:authentication="name"></span>!</span>
+            <a th:href="@{/logout}" class="btn btn-outline-dark pl-3" data-toggle="tooltip" data-placement="bottom"
+               title="Sair">
+                <i class="fa fa-sign-out"></i>
+            </a>
+        </div>
 
-        </div>
-        <div class="collapse-carrinho">
-            <a th:href="@{/carrinho}" type="submit" class="btn btn-outline-dark ml-2 mr-4" data-toggle="tooltip" data-placement="bottom" title="Acessar Carrinho"><i
-                    class="fa fa-shopping-cart carrinho"><p id="cont">0</p></i></a>
-        </div>
-    </nav>
+    </div>
+    <div class="collapse-carrinho">
+        <a th:href="@{/carrinho}" type="submit" class="btn btn-outline-dark ml-2 mr-4" data-toggle="tooltip"
+           data-placement="bottom" title="Acessar Carrinho"><i
+                class="fa fa-shopping-cart carrinho"><p id="cont">0</p></i></a>
+    </div>
+</nav>
 </html>
 

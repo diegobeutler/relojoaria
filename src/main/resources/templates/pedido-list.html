@@ -31,15 +31,15 @@
             </tr>
             </thead>
             <tbody>
-                <tr class="" th:each="pedido : ${pedidos}">
-                    <td class=""><a th:href="@{/pedido/{id}(id=${pedido.idPedido})}" th:text="${pedido.idPedido}"></a></td>
-                    <td class=""  th:text="${usuario.nome}"></td>
-                    <td class=""  th:text="${pedido.dataPedido}"></td>
-                    <td class=""  th:text="${pedido.tipoPagamento}"></td>
-                    <td class="" th:text="${pedido.formaEnvio}"></td>
-                    <td class="" th:text="${pedido.numeroParcelas}"></td>
-                    <td class="" th:text="${pedido.valorTotal}"></td>
-                </tr>
+            <tr class="" th:each="pedido : ${pedidos}">
+                <td class=""><a th:href="@{/pedido/{id}(id=${pedido.idPedido})}" th:text="${pedido.idPedido}"></a></td>
+                <td class="" th:text="${usuario.nome}"></td>
+                <td class="" th:text="${pedido.dataPedido}"></td>
+                <td class="" th:text="${pedido.tipoPagamento}"></td>
+                <td class="" th:text="${pedido.formaEnvio}"></td>
+                <td class="" th:text="${pedido.numeroParcelas}"></td>
+                <td class="" th:text="${pedido.valorTotal}"></td>
+            </tr>
             </tbody>
         </table>
     </div>

@@ -14,6 +14,7 @@ public class PedidoServiceImpl extends CrudServiceImpl<Pedido, Long> implements 
 
     @Autowired
     private PedidoRepository pedidoRepository;
+
     @Override
     protected JpaRepository<Pedido, Long> getRepository() {
         return pedidoRepository;

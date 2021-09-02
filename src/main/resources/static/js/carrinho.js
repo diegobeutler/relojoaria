@@ -1,7 +1,5 @@
-// const btAdicionar = document.querySelector("#btAdicionar");
 let arrayCarrinho = [];
 let liProduto;
-let lista = document.querySelector('#lista');
 let subtotal = 0;
 let produtoExcluir;
 let elementExcluir;
@@ -13,9 +11,6 @@ function initPage() {
     adicionaListaItens();
 }
 
-// $(document).ready(() => {
-//
-// });
 function adicionaListaItens() {
     arrayCarrinho = getArrayStorage('itensCarrinho');
     arrayCarrinho.forEach((itemCarrinho) => {
@@ -112,7 +107,6 @@ function novoBotao(elemento, classe) {
         componente.classList.add(item);
     })
     componente.style.paddingLeft = '5px';
-
     return componente;
 }
 
@@ -128,7 +122,6 @@ function confirmaExclusao() {
     elementExcluir.target.parentNode.parentNode.parentNode.remove();
     setNumeroProdutos(arrayCarrinho.length);
     addMensagem({messageType: 'alert-success', message: 'Produto excluído com sucesso !', time: 5000});
-
 }
 
 function cancelaExclusao() {
@@ -212,10 +205,3 @@ function calculaValorTotalPedido() {
     valorTotal = somar(isSedex ? 20 : 5, valorTotal);
     return valorTotal;
 }
-
-//
-// $(() => {
-//     $('#cpf').mask("999.999.999-99", {placeholder: " "});
-//     $("#telefone").mask("(99) 99999-9999", {autoclear: false});
-//     $("#cep").mask("99999-999", {autoclear: false});
-// })

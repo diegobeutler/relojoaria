@@ -37,8 +37,6 @@
             <h3 class="text-center">Resumo do Pedido</h3>
 
             <ul class="list-group list-group-flush">
-<!--                <li class="list-group-item text-center cod-card border-0">Cód Pedido: <label id="codPedido">7928</label>-->
-<!--                </li>-->
                 <li class="list-group-item border-0">Cliente: <label th:text="${usuario.nome}"> </label></li>
                 <li class="list-group-item border-0">Forma Envio: <span id="formaEnvio"></span></li>
                 <li class="list-group-item border-0">Frete: R$ <label id="precoFrete">20.00</label></li>
@@ -64,7 +62,6 @@
             crossorigin="anonymous"></script>
     <script src="http://ajax.microsoft.com/ajax/jquery.validate/1.7/jquery.validate.js" type="text/javascript"></script>
     <script type="text/javascript" src="js/jquery.maskedinput.js"></script>
-    <!--    <script src="bootstrap4/js/bootstrap.js" type="text/javascript" charset="utf-8" async defer></script>-->
     <script type="text/javascript" th:src="@{/js/pedido.js}"></script>
     <link rel="stylesheet" th:href="@{/css/index.css}"/>
 </section>

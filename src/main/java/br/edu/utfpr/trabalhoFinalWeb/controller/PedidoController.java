@@ -26,8 +26,6 @@ public class PedidoController {
     @Autowired
     private PedidoService pedidoService;
     @Autowired
-    private UsuarioRepository usuarioRepository;
-    @Autowired
     private UsuarioService usuarioService;
 
     @GetMapping("")
@@ -47,10 +45,8 @@ public class PedidoController {
 
             Usuario usuario = usuarioService.getUsuarioLogado();
             pedido.setUsuario(usuario);
-//            pedido.setUsuario(usuarioRepository.findByUsername(usuario.getUsername()));
             pedido.setDataPedido(LocalDate.now());
             pedido.getPedidoItens().forEach(pi -> pi.setPedido(pedido));
-
             pedidoService.save(pedido);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {

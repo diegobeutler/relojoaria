@@ -1,12 +1,14 @@
 window.onload = initPage;
-function initPage(){
-    const href= window.location.href;
-    if(href.indexOf("aneis") > -1) document.getElementById('categoria').value = 'aneis';
-    else if(href.indexOf("relogios") > -1) document.getElementById('categoria').value = 'relogios';
+
+function initPage() {
+    const href = window.location.href;
+    if (href.indexOf("aneis") > -1) document.getElementById('categoria').value = 'aneis';
+    else if (href.indexOf("relogios") > -1) document.getElementById('categoria').value = 'relogios';
     else document.getElementById('categoria').value = '';
     setImagens();
     verificarSeEhLogin();
 }
+
 function verificarSeEhLogin() {
     if (getStorage('isLogin')) {
         addMensagem({
@@ -17,7 +19,7 @@ function verificarSeEhLogin() {
         });
     }
 
-    if (getStorage('isEdit')) {
+    if (getStorage('isEdit')) {// seria para quando editado o perfil do usuario, mas acbaei não terminando
         addMensagem({
             messageType: 'alert-success',
             message: 'Usuário atualizado com sucesso !',
@@ -28,10 +30,14 @@ function verificarSeEhLogin() {
 }
 
 function setImagens() {
-    for (i=0;i<8;i++){
+    for (i = 0; i <4; i++) {
         setImage({
-            numImg: i+1,
+            numImg: i + 1,
             cat: 'relogios'
+        });
+        setImage({
+            numImg: i + 1,
+            cat: 'aneis'
         });
     }
 }
@@ -52,6 +58,6 @@ function setImage({numImg, cat}) {
 }
 
 function filtrar() {
-     categoria = document.getElementById('categoria').value;
-    window.location.href = '/'+categoria;
+    categoria = document.getElementById('categoria').value;
+    window.location.href = '/' + categoria;
 }

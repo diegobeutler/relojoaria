@@ -24,10 +24,6 @@ function initPage() {
 
 }
 
-// $(document).ready(() => {
-//
-// });
-
 function novoLi(itemCarrinho) {
 	liProduto = document.createElement('li');
 	let imgProduto = document.createElement('img');
@@ -112,13 +108,13 @@ function finalizarCompra() {
 				setNumeroProdutos(0);
 				window.location = '/pedido/list';
 				}
-			);//FIM swal()
+			);
 		},
 		error: function(data) {
 			console.log(data);
 			Swal.fire('Errou!', 'Falha ao salvar registro!', 'error');
 		}
-	}); //FIM ajax()
+	});
 	return false;
 }
 

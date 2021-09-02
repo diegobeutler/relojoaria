@@ -3,7 +3,6 @@ package br.edu.utfpr.trabalhoFinalWeb.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.math.BigInteger;
 
 @Entity
 @Table(name = "PEDIDO_ITEM")
@@ -27,10 +26,10 @@ public class PedidoItem {
     @JoinColumn(name = "ID_ITEM")
     private Item item;
 
-    @Column(name = "QUANTIDADE")
+    @Column(name = "QUANTIDADE", nullable = false)
     private Integer quantidade;
 
-    @Column(name = "VALOR_UNITARIO")
+    @Column(name = "VALOR_UNITARIO", nullable = false)
     private Double valorUnitario;
 
 

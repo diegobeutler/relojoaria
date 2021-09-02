@@ -8,7 +8,6 @@ import br.edu.utfpr.trabalhoFinalWeb.repository.PermissaoRepository;
 import br.edu.utfpr.trabalhoFinalWeb.repository.UsuarioRepository;
 import br.edu.utfpr.trabalhoFinalWeb.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
