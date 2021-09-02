@@ -16,8 +16,9 @@
                 <img th:src="@{/images/logo.png}" class=" logo" alt="Logo"/>Relojoaria
                 Hora Certa</a></li>
             <li><a class="nav-link text-light ml-2  pr-lg-0 p-xl-2" th:href="@{/login}">Login</a></li>
-            <li><a class="nav-link  text-light  pr-lg-0 p-xl-2" th:href="@{/usuario/cadastro}">Cadastrar-se</a></li>
-            <li><a class="nav-link  text-light   pr-lg-0 p-xl-2" th:href="@{/usuario/perfil}">Seu Perfil</a></li>
+            <li><a class="nav-link  text-light pr-lg-0 p-xl-2" th:href="@{/usuario/cadastro}">Cadastrar-se</a></li>
+            <li><a class="nav-link  text-light pr-lg-0 p-xl-2" th:href="@{/usuario/perfil}">Seu Perfil</a></li>
+            <li><a class="nav-link  text-light pr-lg-0 p-xl-2" th:href="@{/pedido/list}">Pedidos</a></li>
         </ul>
         <form th:id="buscarNav" th:method="post" th:action="@{/buscar}" class="form-inline buscar">
             <input th:id="query" th:name="query" class="form-control mr-sm-2" type="search" placeholder="Buscar"
