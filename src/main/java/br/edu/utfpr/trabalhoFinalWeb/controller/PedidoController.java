@@ -29,7 +29,7 @@ public class PedidoController {
     private UsuarioService usuarioService;
 
     @GetMapping("")
-    private String pedido(Model model){
+    private String pedido(Model model) {
         model.addAttribute("usuario", usuarioService.getUsuarioLogado());
         return "pedido";
     }
@@ -52,13 +52,12 @@ public class PedidoController {
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-
         }
     }
 
     @GetMapping("list")
-    private String list(Model model){
-        Usuario usuario =  usuarioService.getUsuarioLogado();
+    private String list(Model model) {
+        Usuario usuario = usuarioService.getUsuarioLogado();
         model.addAttribute("pedidos", pedidoService.findAllByUsuarioId(usuario.getId()));
         model.addAttribute("usuario", usuario);
         return "pedido-list";
